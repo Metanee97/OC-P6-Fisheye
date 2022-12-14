@@ -17,10 +17,12 @@ function photographerFactory(data) {
       img.setAttribute("src", picture);
       img.setAttribute("alt", `Portrait de ${name}`);
 
-      const h2 = document.createElement( 'h2' ); //je crée le nom/prénom
-      h2.innerHTML = name;
+      const photographerName = document.createElement( 'h2' ); //je crée le nom/prénom
+      photographerName.classList.add('photographer-name');
+      photographerName.innerHTML = name;
 
       const location = document.createElement('p'); //je crée une balise pour la ville
+      location.classList.add('location');
       location.innerHTML = `${city}, ${country}`;
 
 
@@ -32,7 +34,7 @@ function photographerFactory(data) {
       pricePerDay.innerHTML = `${price}€/jour`;
 
       link.appendChild(img); //j'insère mes éléments créés dans leur emplacement
-      link.appendChild(h2);
+      link.appendChild(photographerName);
 
       article.appendChild(link)
       article.appendChild(location);
