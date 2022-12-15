@@ -57,6 +57,10 @@ h1 {
   margin-bottom: 0.5em;
 }
 
+.photographer_section a {
+  text-decoration: none;
+}
+
 .photographer_section p {
   margin: 0;
 }
