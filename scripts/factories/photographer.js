@@ -11,11 +11,12 @@ function photographerFactory(data) {
       article.classList.add('photographer-card') // je crée un article avec les infos photographes
 
       const link = document.createElement('a');  //je crée un lien
-      link.setAttribute("href", `photographer.html?id=${id} $name=${name} $city=${city} $country=${country} $picture=${picture} $price=${price}`); //
+      link.setAttribute("href", `photographer.html?id=${id} $name=${name} $city=${city} $country=${country} $picture=${picture} $tagline=${tagline}` );
       console.log("window location")
       link.classList.add("photographerPage__link");  // j'ajoute la classe "photographerPage__link"
 
       const img = document.createElement('img'); //je crée l'avatar
+      img.classList.add('avatar');
       img.setAttribute("src", picture);
       img.setAttribute("alt", `Portrait de ${name}`);
       img.setAttribute("role", "button");
@@ -28,7 +29,6 @@ function photographerFactory(data) {
       const location = document.createElement('p'); //je crée une balise pour la ville
       location.classList.add('location');
       location.innerHTML = `${city}, ${country}`;
-
 
       const quote = document.createElement( 'p' ); //je crée une balise pour la citation
       quote.innerHTML = tagline;
