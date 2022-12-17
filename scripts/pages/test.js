@@ -33,7 +33,7 @@ async function getPhotographers() {
         Il faut admettre que le serveur / logiciel / application ne répondra JAMAIS instantanément,
         même si les pages répondent en quelques milli-secondes, ça reste un délais.
 
-        JS est bête et cherche à tout exec sans attendre les données alors que nous on va écrire notre code
+        JS est bête et cherche à tout executer sans attendre les données alors que nous on va écrire notre code
         en se basant sur des données. On dit que JS est ASYNCHRONE :
         voir schéma : https://www.koyeb.com/static/images/blog/sync-vs-async-schema.png
 
@@ -59,3 +59,46 @@ async function getPhotographers() {
     };
 
     init();
+
+
+    //////////////////////////////////:::::
+
+
+async function getPhotographers() { //méthode pour récupérer données contenues dans fichier JSON
+  return fetch('../data/photographers.json')  // envoi requête à l'emplacement du JSON
+      .then(res => {          // une fois promesse résolue, fait ca then(): retourne la réponse ??
+          return res.json();  // .json() = parser
+      })
+      .then(dataJSON => {
+          return dataJSON;
+      })
+}
+
+// fonction pour afficher les données du json
+async function displayData(photographers) {
+   // je cible la div qui a pour classe .photographer section
+    const photographersSection = document.querySelector(".photographer_section");
+    // je parcours le tableau photographers avec la boucle forEach
+    photographers.forEach((photographer) => {
+        const photographerModel = photographerFactory(photographer);  // pq la fonction est dans une variable?
+        const userCardDOM = photographerModel.getUserCardDOM(); //?
+        // console.log(userCardDOM);
+        photographersSection.appendChild(userCardDOM);
+    });
+};
+
+// Récupère les datas des photographes
+async function init() {
+
+    /*
+    console.log(getPhotographers())
+    console.log(await getPhotographers())
+    */
+
+    const { photographers } = await getPhotographers();
+
+    console.log(photographers)
+    displayData(photographers);
+};
+
+init();

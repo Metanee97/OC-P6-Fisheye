@@ -11,7 +11,7 @@ function photographerFactory(data) {
       article.classList.add('photographer-card') // je crée un article avec les infos photographes
 
       const link = document.createElement('a');  //je crée un lien
-      link.setAttribute("href", `photographer.html?id=${id}`); //
+      link.setAttribute("href", `photographer.html?id=${id} $name=${name} $city=${city} $country=${country} $picture=${picture} $price=${price}`); //
       console.log("window location")
       link.classList.add("photographerPage__link");  // j'ajoute la classe "photographerPage__link"
 
