@@ -2,77 +2,83 @@
 
 //HEADER
 
-function getPhotographer(data) {
-  const { name, city, country, tagline, portrait, id } = data;
+function getPhotographerHeader(data) {
+  const { name, city, country, tagline, portrait } = data;
+  const $header = document.querySelector('photograph-header');
+  console.log($header);
+
+  const photographHeaderInfos = `
+    <div class="photograph-header-infos">
+      <h1>${name}</h1>
+      <p class="location">${city}, ${country}</p>
+      <p>${tagline}</p>
+    </div>
+    <div class="photograph-header__contact-btn">
+      <button class="contact_button"></button>
+    </div>
+    <div class="photograph-header__avatar">
+      <img src="/assets/photographers/${portrait}" alt="avatar du photographe ${name}">
+    </div>
+  `;
+
+  $header.innerHTML(photographHeaderInfos);
+
+  return $header
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-//je cible la carte photographe de la page index
-const $photographerCard = document.querySelector("photographerPage__link");
-$photographerCard.addEventListener('click', getPhotographerHeader(data));
 //Paramètres de l'url
-function getPhotographerHeader(data) {
+// function getPhotographerHeader(data) {
 
-  const { name, city, country, picture, tagline } = data;
+//   const { name, city, country, picture, tagline } = data;
 
-  const urlParams = new URLSearchParams(window.location.search);
-  console.log(urlParams);
+//   const urlParams = new URLSearchParams(window.location.search);
+//   console.log(urlParams);
 
-  const namePhotographer = urlParams.get('name');
-  console.log(namePhotographer);
+//   const namePhotographer = urlParams.get('name');
+//   console.log(namePhotographer);
 
   //je récupère toutes les données url
-  const city = urlParams.get('city');
-  const country = urlParams.get('country');
-  const picture = urlParams.get('picture');
-  const quote = urlParams.get('tagline');
-  console.log(city);
+  // const city = urlParams.get('city');
+  // const country = urlParams.get('country');
+  // const picture = urlParams.get('picture');
+  // const quote = urlParams.get('tagline');
+  // console.log(city);
 
   // je cible l'élément du DOM
-  const $photographerPart = document.querySelector("photograph-header");
+  // const $photographerPart = document.querySelector("photograph-header");
 
   // je crée une balise <article> pour les infos du photographe et je lui donne une classe
-  const article = document.createElement( 'article' );
-  article.classList.add('photographer-infos');
+  // const article = document.createElement( 'article' );
+  // article.classList.add('photographer-infos');
 
   //je crée le nom
-  const nameP = document.createElement("h1");
-  nameP.innerHTML = namePhotographer;
+  // const nameP = document.createElement("h1");
+  // nameP.innerHTML = namePhotographer;
 
   // je crée la ville
-  const location = document.createElement("h2");
-  location.innerHTML = '${city}, ${country}';
+  // const location = document.createElement("h2");
+  // location.innerHTML = '${city}, ${country}';
 
   //je crée la quote
-  const tagline = document.createElement("p");
-  tagline.innerHTML = quote;
+  // const tagline = document.createElement("p");
+  // tagline.innerHTML = quote;
 
   // je crée un avatar et complète les attributs
-  const avatar = document.createElement('img'); //je crée l'avatar
-  img.classList.add('avatar');
-  img.setAttribute("src", picture);
-  img.setAttribute("alt", `Portrait de ${namePhotographer}`);
-  img.setAttribute("role", "button");
-  img.setAttribute("aria-label", `Accéder à la page de ${namePhotographer}`);
+  // const avatar = document.createElement('img'); //je crée l'avatar
+  // img.classList.add('avatar');
+  // img.setAttribute("src", picture);
+  // img.setAttribute("alt", `Portrait de ${namePhotographer}`);
+  // img.setAttribute("role", "button");
+  // img.setAttribute("aria-label", `Accéder à la page de ${namePhotographer}`);
 
   //j'insère les nouveaux éléments dans la page
-  $photographerPart.appendChild(article);
+  // $photographerPart.appendChild(article);
 
-  article.appendChild(avatar);
-  article.appendChild(location);
+  // article.appendChild(avatar);
+  // article.appendChild(location);
 
-  return (article);
-};
+//   return (article);
+// };
