@@ -25,7 +25,7 @@ h1 {
 }
 
 
-/* Photographer section */
+/* INDEX - Photographers */
 
 .photographer_section {
   display: grid;
@@ -71,4 +71,12 @@ h1 {
 
 .pricePerDay {
   color: #525252;
+}
+
+
+
+/* PHOTOGRAPHER.HTML - Media Section  */
+
+.photograph-media {
+  float: left;
 }
