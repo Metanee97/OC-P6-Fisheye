@@ -26,7 +26,17 @@ function getPhotographerHeader(data) {
   return $header
 }
 
+async function display(medias) {
 
+	const $mediaSection = document.querySelector("photographer-media");
+
+    medias.forEach((media) => {
+      const mediaModel = mediaFactory(media);
+		  mediaFactory(media);
+      //const userCardDOM = mediaModel.getUserCardDOM();
+       $mediaSection.appendChild(mediaModel);
+    });
+};
 
 
 //Paramètres de l'url

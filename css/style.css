@@ -80,3 +80,8 @@ h1 {
 .photograph-media {
   float: left;
 }
+
+.media {
+  width: 300px;
+  height: 300px;
+}
