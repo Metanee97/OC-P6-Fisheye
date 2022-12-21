@@ -61,7 +61,9 @@ async function getPhotographers() {
     init();
 
 
-    //////////////////////////////////:::::
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////:
+    ///////////////////////////////////////////////////////////////
 
 
 async function getPhotographers() { //méthode pour récupérer données contenues dans fichier JSON
@@ -74,30 +76,34 @@ async function getPhotographers() { //méthode pour récupérer données contenu
       })
 }
 
-// fonction pour afficher les données du json
-async function displayData(photographers) {
-   // je cible la div qui a pour classe .photographer section
+// FONCTION ASYNCHRONE POUR AFFICHER DONNEES
+async function displayData(photographers) { //a quoi correspond photographers?
+
+   // je cible la div qui a pour classe .photographer section dans index.html
     const photographersSection = document.querySelector(".photographer_section");
+
     // je parcours le tableau photographers avec la boucle forEach
-    photographers.forEach((photographer) => {
-        const photographerModel = photographerFactory(photographer);  // pq la fonction est dans une variable?
-        const userCardDOM = photographerModel.getUserCardDOM(); //?
+    photographers.forEach((photographer) => { //pq parenthèses en plus (callback?)? y a quoi comme données dans UN photographer?
+
+        //
+        const photographerModel = photographerFactory(photographer);  // c'est quoi cet argument? pas de import? quand on place une fonction dans une variable, que retourne la variable?
+        //
+        const userCardDOM = photographerModel.getUserCardDOM(); //
         // console.log(userCardDOM);
-        photographersSection.appendChild(userCardDOM);
+        // rajoute
+        photographersSection.appendChild(userCardDOM); // appendChild sans créer d'élément?
     });
 };
 
-// Récupère les datas des photographes
+// EXECUTE LES FONCTIONS PRECEDENTS
 async function init() {
 
-    /*
-    console.log(getPhotographers())
-    console.log(await getPhotographers())
-    */
-
-    const { photographers } = await getPhotographers();
+    //récupère les datas photographes avec la fonction async
+    // et place les dans la constante photographers
+    const { photographers } = await getPhotographers(); //pq on utilise une syntaxe de destructuration pour placer le résultat de la fonction? + pq le moté clé await ici et pas sur fonction display data et init?
 
     console.log(photographers)
+    //exécute fonction d'affichahe en utilisant la constante précédent photogrpahers
     displayData(photographers);
 };
 

@@ -1,6 +1,6 @@
 // Design pattern factory for photographers
 
-function photographerFactory(data) {
+function photographerFactory(data) {  //2 fonctions?
     const { name, city, country, portrait, tagline, price, id } = data;
 
     const picture = `assets/photographers/${portrait}`;
@@ -47,5 +47,5 @@ function photographerFactory(data) {
 
       return (article);
     }
-    return { name, picture, getUserCardDOM }
+    return { name, picture, getUserCardDOM }  // pourquoi name et picture?
 }
