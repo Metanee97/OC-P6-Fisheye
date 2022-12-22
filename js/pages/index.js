@@ -17,9 +17,9 @@ async function displayData(photographers) {
 
     photographers.forEach((photographer) => {
         const photographerModel = photographerFactory(photographer);
-        const userCardDOM = photographerModel.getUserCardDOM();
+        const photographerCardDOM = photographerModel.createPhotographerCardDOM();
         // console.log(userCardDOM);
-        photographersSection.appendChild(userCardDOM);
+        photographersSection.appendChild(photographerCardDOM);
     });
 };
 
@@ -28,6 +28,7 @@ async function init() {
 
     //console.log(getPhotographers())
     //console.log(await getPhotographers())
+    //récupère uniquement le tableau photographers de l'objet json dans variable photographers
     const { photographers } = await getPhotographers();
 
     //console.log(photographers)
