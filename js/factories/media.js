@@ -1,11 +1,5 @@
 //fonction media factory
-const urlParams = new URLSearchParams(window.location.search);
-const id_param = urlParams.get('id');
-const name = urlParams.get('name');
-const country = urlParams.get('country');
-const city = urlParams.get('city');
-const picture = urlParams.get('picture');
-const price = urlParams.get('price');
+
 
 async function mediaFactory(data) {
 
