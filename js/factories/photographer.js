@@ -2,17 +2,15 @@
 
 function photographerFactory(data) {  //2 fonctions?
     const { name, city, country, portrait, tagline, price, id } = data;
-
     const picture = `assets/photographers/${portrait}`;
 
-    function getUserCardDOM() {
+    function createPhotographerCardDOM() {
 
       const article = document.createElement( 'article' );
       article.classList.add('photographer-card') // je crée un article avec les infos photographes
 
       const link = document.createElement('a');  //je crée un lien
-      link.setAttribute("href", `photographer.html?id=${id} $name=${name} $city=${city} $country=${country} $picture=${picture} $tagline=${tagline}` );
-      console.log("window location")
+      link.setAttribute("href", `photographer.html?id=${id}}` );
       link.classList.add("photographerPage__link");  // j'ajoute la classe "photographerPage__link"
 
       const img = document.createElement('img'); //je crée l'avatar
@@ -47,5 +45,5 @@ function photographerFactory(data) {  //2 fonctions?
 
       return (article);
     }
-    return { name, picture, getUserCardDOM }  // pourquoi name et picture?
+    return { name, picture, createPhotographerCardDOM }  // pourquoi name et picture? et pourquoi entre {} ?
 }
