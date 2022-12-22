@@ -1,11 +1,36 @@
 //Mettre le code JavaScript lié à la page photographer.html
 
-//HEADER
 
-function getPhotographerHeader(data) {
+//HEADER
+// récupérer les données JSON
+// filtrer pour avoir les données d'UN photographe
+async function getPhotographers() {
+  return fetch('../data/photographers.json')
+      .then(res => {
+          return res.json();
+
+      })
+      .then(dataJSON => {
+        //return dataJSON.find()
+        // find ou for each pour chercher ID voulu
+          console.log(dataJSON);
+      })
+}
+
+async function getOnePhotographer() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const id_param = urlParams.get('id');
+
+  const currentOne = photographers.find(id == id_param);
+  //return currentOne;
+  console.log(currentOne)
+
+};
+
+
+function createPhotographerHeader(data) {
   const { name, city, country, tagline, portrait } = data;
   const $header = document.querySelector('photograph-header');
-  console.log($header);
 
   const photographHeaderInfos = `
     <div class="photograph-header-infos">
@@ -26,7 +51,8 @@ function getPhotographerHeader(data) {
   return $header
 }
 
-async function display(medias) {
+
+async function displayMedias(medias) {
 
 	const $mediaSection = document.querySelector("photographer-media");
 
@@ -39,56 +65,18 @@ async function display(medias) {
 };
 
 
-//Paramètres de l'url
-// function getPhotographerHeader(data) {
+// fonction asynchrone pour exécuter les deux précédentes fonctions
+ async function init() {
+// 1) Récupérer ID de l'url pour savoir quel photographe afficher
 
-//   const { name, city, country, picture, tagline } = data;
+// 2) Charger tous les photographes JSON
+// getOnePhotographer(id_param)
+// 2) a - filtrer le photographe grâce à l'id (fonction find ou forEach avec if si idurl == idphotographer.id)
+// 3) fonction display photographerHeader
+    const { photographers } = await getPhotographers();
 
-//   const urlParams = new URLSearchParams(window.location.search);
-//   console.log(urlParams);
+    displayData(photographers);
+    console.log(getOnePhotographer);
+};
 
-//   const namePhotographer = urlParams.get('name');
-//   console.log(namePhotographer);
-
-  //je récupère toutes les données url
-  // const city = urlParams.get('city');
-  // const country = urlParams.get('country');
-  // const picture = urlParams.get('picture');
-  // const quote = urlParams.get('tagline');
-  // console.log(city);
-
-  // je cible l'élément du DOM
-  // const $photographerPart = document.querySelector("photograph-header");
-
-  // je crée une balise <article> pour les infos du photographe et je lui donne une classe
-  // const article = document.createElement( 'article' );
-  // article.classList.add('photographer-infos');
-
-  //je crée le nom
-  // const nameP = document.createElement("h1");
-  // nameP.innerHTML = namePhotographer;
-
-  // je crée la ville
-  // const location = document.createElement("h2");
-  // location.innerHTML = '${city}, ${country}';
-
-  //je crée la quote
-  // const tagline = document.createElement("p");
-  // tagline.innerHTML = quote;
-
-  // je crée un avatar et complète les attributs
-  // const avatar = document.createElement('img'); //je crée l'avatar
-  // img.classList.add('avatar');
-  // img.setAttribute("src", picture);
-  // img.setAttribute("alt", `Portrait de ${namePhotographer}`);
-  // img.setAttribute("role", "button");
-  // img.setAttribute("aria-label", `Accéder à la page de ${namePhotographer}`);
-
-  //j'insère les nouveaux éléments dans la page
-  // $photographerPart.appendChild(article);
-
-  // article.appendChild(avatar);
-  // article.appendChild(location);
-
-//   return (article);
-// };
+init();
