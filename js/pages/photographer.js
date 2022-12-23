@@ -2,34 +2,31 @@
 
 
 // //HEADER
-// // récupérer les données JSON
-// // filtrer pour avoir les données d'UN photographe
-function getPhotographers() {
-  return fetch('../data/photographers.json');
-      // .then(res => {
-      //     return res.json();
 
-      // })
-      // .then(dataJSON => {
-      //     console.log(dataJSON);
-      // })
+//fonction pour récupérer les données JSON
+function getAllPhotographers() {
+  return fetch('../data/photographers.json')
+      .then(res => {
+          return res.json();
+      })
+      .then(dataJSON => {
+          return dataJSON;
+      })
 }
 
+//fonction qui filtre les résultats JSON pour trouver l'id du photographe choisi
 async function getOnePhotographer() {
   const urlParams = new URLSearchParams(window.location.search);
   const id_param = urlParams.get('id');
-  console.log(id_param);
+  //console.log(id_param);
 
+ const { photographers } = await getAllPhotographers();
+ //console.log(photographers);
 
-  //return currentOne;
-  //console.log(currentOne)
+ const currentPhotographer = photographers.find(element => element.id == id_param);
 
- let result = await getPhotographers();
- let resultJson = await result.json();
-
- const currentOne = resultJson.photographers.find(item => item.id == id_param);
- console.log(resultJson.photographers);
- console.log(currentOne);
+ return currentPhotographer;
+ //console.log(currentPhotographer);
 };
 
 getOnePhotographer();
