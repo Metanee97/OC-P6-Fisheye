@@ -10,7 +10,7 @@ function photographerFactory(data) {  //2 fonctions?
       article.classList.add('photographer-card') // je crée un article avec les infos photographes
 
       const link = document.createElement('a');  //je crée un lien
-      link.setAttribute("href", `photographer.html?id=${id}}` );
+      link.setAttribute("href", `photographer.html?id=${id}` );
       link.classList.add("photographerPage__link");  // j'ajoute la classe "photographerPage__link"
 
       const img = document.createElement('img'); //je crée l'avatar

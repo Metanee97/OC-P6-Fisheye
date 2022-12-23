@@ -20,7 +20,7 @@ async function getPhotographers() {
 
         photographers.forEach((photographer) => {
             const photographerModel = photographerFactory(photographer);
-            const userCardDOM = photographerModel.getUserCardDOM();
+            const userCardDOM = photographerModel.createPhotographCardDOM();
             photographersSection.appendChild(userCardDOM);
         });
     };
@@ -88,10 +88,10 @@ async function displayData(photographers) { //a quoi correspond photographers?
         //
         const photographerModel = photographerFactory(photographer);  // c'est quoi cet argument? pas de import? quand on place une fonction dans une variable, que retourne la variable?
         //
-        const userCardDOM = photographerModel.getUserCardDOM(); //
+        const photographCardDOM = photographerModel.createPhotographCardDOM(); //
         // console.log(userCardDOM);
         // rajoute
-        photographersSection.appendChild(userCardDOM); // appendChild sans créer d'élément?
+        photographersSection.appendChild(photographCardDOM); // appendChild sans créer d'élément?
     });
 };
 
@@ -100,7 +100,7 @@ async function init() {
 
     //récupère les datas photographes avec la fonction async
     // et place les dans la constante photographers
-    const { photographers } = await getPhotographers(); //pq on utilise une syntaxe de destructuration pour placer le résultat de la fonction? + pq le moté clé await ici et pas sur fonction display data et init?
+    const { photographers } = await getPhotographers(); // pq le mot clé await ici et pas sur fonction display data et init?
 
     console.log(photographers)
     //exécute fonction d'affichahe en utilisant la constante précédent photogrpahers
