@@ -31,7 +31,7 @@ async function init() {
     //récupère uniquement le tableau photographers de l'objet json dans variable photographers
     const { photographers } = await getPhotographers();
 
-    //console.log(photographers)
+    console.log(photographers)
     displayData(photographers);
 };
 
