@@ -29,6 +29,8 @@ async function getOnePhotographer() {
  //console.log(test);
 };
 
+// peut être placé dans dossier JS/Templates
+// fonction pour afficher infos du photographe
 async function createPhotographerHeader() {
   //const { name, city, country, tagline, portrait } = data;
   const $header = document.querySelector('photograph-header');
