@@ -23,52 +23,60 @@ async function getOnePhotographer() {
  const { photographers } = await getAllPhotographers();
  //console.log(photographers);
 
- const currentPhotographer = photographers.find(element => element.id == id_param);
+ return photographers.find(element => element.id == id_param);
 
- return currentPhotographer;
- //console.log(currentPhotographer);
+ //return currentPhotographer;
+ //console.log(test);
 };
 
-getOnePhotographer();
+async function createPhotographerHeader() {
+  //const { name, city, country, tagline, portrait } = data;
+  const $header = document.querySelector('photograph-header');
 
-// // function createPhotographerHeader(data) {
-// //   const { name, city, country, tagline, portrait } = data;
-// //   const $header = document.querySelector('photograph-header');
+  const photographHeaderInfos = `
+    <div class="photograph-header-infos">
+      <h1>${name}</h1>
+      <p class="location">${city}, ${country}</p>
+      <p>${tagline}</p>
+    </div>
+    <div class="photograph-header__contact-btn">
+      <button class="contact_button"></button>
+    </div>
+    <div class="photograph-header__avatar">
+      <img src="/assets/photographers/${portrait}" alt="avatar du photographe ${name}">
+    </div>
+  `;
 
-// //   const photographHeaderInfos = `
-// //     <div class="photograph-header-infos">
-// //       <h1>${name}</h1>
-// //       <p class="location">${city}, ${country}</p>
-// //       <p>${tagline}</p>
-// //     </div>
-// //     <div class="photograph-header__contact-btn">
-// //       <button class="contact_button"></button>
-// //     </div>
-// //     <div class="photograph-header__avatar">
-// //       <img src="/assets/photographers/${portrait}" alt="avatar du photographe ${name}">
-// //     </div>
-// //   `;
+  $header.innerHTML(photographHeaderInfos);
 
-// //   $header.innerHTML(photographHeaderInfos);
+  return $header
+}
 
-// //   return $header
-// // }
+//fonction async pour afficher données
+async function displayPhotographer() {
+
+  const currentPhotographer = await getOnePhotographer(); // j'obtiens un objet
+  console.log(currentPhotographer)
+  //const { name, city, country, tagline, portrait } = currentPhotographer;
+  //console.log(name);
+  createPhotographerHeader(currentPhotographer);
+
+};
+
+displayPhotographer();
 
 // // fonction asynchrone pour exécuter les deux précédentes fonctions
-//  async function init() {
-// // 1) Récupérer ID de l'url pour savoir quel photographe afficher
+ //async function init() {
 
-// // 2) Charger tous les photographes JSON
-// // getOnePhotographer(id_param)
-// // 2) a - filtrer le photographe grâce à l'id (fonction find ou forEach avec if si idurl == idphotographer.id)
-// // 3) fonction display photographerHeader
-//     const { photographers } = await getPhotographers();
+// 3) fonction display photographerHeader
+//console.log(getOnePhotographer());
+    //const { photographers } = await getPhotographers();
 
-//     displayData(photographers);
-//     console.log(getOnePhotographer);
-// };
+    //displayPhotographer(photographers);
+    //console.log(getOnePhotographer);
+//};
 
-// init();
+//init();
 
 
 // async function displayMedias(medias) {
