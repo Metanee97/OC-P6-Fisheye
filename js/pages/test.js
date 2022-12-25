@@ -1,3 +1,5 @@
+// Réponses de Kévin Mentor
+
 async function getPhotographers() {
         return fetch('../data/photographers.json') // On retourne les données issus du fetch (pas de données retournés tant que les promesses n'ont pas eu de résultat)
             .then(res => {
@@ -65,13 +67,63 @@ async function getPhotographers() {
     /////////////////////////////////////////////////////////////////////:
     ///////////////////////////////////////////////////////////////
 
-
-async function getPhotographers() { //méthode pour récupérer données contenues dans fichier JSON
-  return fetch('../data/photographers.json')  // envoi requête à l'emplacement du JSON
-      .then(res => {          // une fois promesse résolue, fait ca then(): retourne la réponse ??
-          return res.json();  // .json() = parser
+//Mes questions
+async function getPhotographers() {   // tjs mettre requête fetch dans une fonction?
+  return fetch('../data/photographers.json')  // pourquoi return?
+      .then(res => {
+          return res.json();
       })
-      .then(dataJSON => {
+      .then(dataJSON => {  //pourquoi cette écriture dataJSON?
+          return dataJSON;
+      })
+}
+
+// FONCTION ASYNCHRONE POUR AFFICHER DONNEES
+async function displayData(photographers) { //a quoi correspond photographers?
+
+   // je cible la div qui a pour classe .photographer section dans index.html
+    const photographersSection = document.querySelector(".photographer_section");
+
+    // je parcours le tableau photographers avec la boucle forEach
+    photographers.forEach((photographer) => { //pq parenthèses en plus (callback?)? y a quoi comme données dans UN photographer?
+
+        //
+        const photographerModel = photographerFactory(photographer);  // c'est quoi cet argument? pas de import? quand on place une fonction dans une variable, que retourne la variable?
+        //
+        const photographCardDOM = photographerModel.createPhotographCardDOM(); //
+        // console.log(userCardDOM);
+        // rajoute
+        photographersSection.appendChild(photographCardDOM); // appendChild sans créer d'élément?
+    });
+};
+
+// EXECUTE LES FONCTIONS PRECEDENTS
+async function init() {
+
+    //récupère les datas photographes avec la fonction async
+    // et place les dans la constante photographers
+    const { photographers } = await getPhotographers(); // pq le mot clé await ici et pas sur fonction display data et init?
+
+    console.log(photographers)
+    //exécute fonction d'affichahe en utilisant la constante précédent photogrpahers
+    displayData(photographers);
+};
+
+init();
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Mes explications
+
+
+//méthode pour récupérer données contenues dans fichier JSON
+// méthode asynchrone car on ne sait pas combien de temps va prendre la réponse pour nous parvenir
+async function getPhotographers() {
+  return fetch('../data/photographers.json')  // emplacement du JSON entre () - va chercher les données et renvoie une promesse
+      .then(res => {          // ensuite attend la réponse - res = nom donné à l'objet retourné
+          return res.json();  // méthode .json() pour convertir les données en JSON
+      .then(dataJSON => {  //ensuite attend la promesse de conversion - dataJSON est un nom arbitraire qui indique que c'est un JSON
           return dataJSON;
       })
 }

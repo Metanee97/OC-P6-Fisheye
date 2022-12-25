@@ -6,12 +6,16 @@ async function getMedias() {
     .then(res => res.json())
     .then(datasJSON => {
       let { media } = datasJSON;
-      return media;
-      //console.log(media)
+      //return media;
+      console.log(media)
     })
 };
 
 getMedias();
+
+// récupérer tous les médias d'un seul ID
+// récupérer les médias dont la propriété est image
+
 
 // async function mediaFactory(data) {
 
