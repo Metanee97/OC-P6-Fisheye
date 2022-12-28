@@ -12,7 +12,7 @@ async function getAllDatas() {
           //console.log(dataJSON);
       })
 };
-getAllDatas();
+//getAllDatas();
 
 
 
@@ -22,11 +22,11 @@ async function getOnePhotographer() {
   //je récupère l'ID dans l'url:
   const urlParams = new URLSearchParams(window.location.search);
   const id_param = urlParams.get('id');
-  console.log(id_param);
+  //console.log(id_param);
 
 //je place les datas photographes ds 1 constante:
  const { photographers } = await getAllDatas();
- console.log(photographers);
+ //console.log(photographers);
 
  // Je cherche l'ID dans tous les photographes
  let currentPhotographer = photographers.find(element => element.id == id_param);
@@ -34,7 +34,7 @@ async function getOnePhotographer() {
 
  return currentPhotographer;
 };
-getOnePhotographer()
+//getOnePhotographer()
 //console.log(getOnePhotographer());
 
 
@@ -70,18 +70,17 @@ async function createPhotographerHeader(currentPhotographer) {
 
   return $header
 };
-createPhotographerHeader(getOnePhotographer());
+//createPhotographerHeader(getOnePhotographer());
+
+
+// fonction qui exécute toutes les fonctions
+// OK
+async function init() {
+
+  const photographerToDisplay = getOnePhotographer();
+  createPhotographerHeader(photographerToDisplay);
+};
 
 
 
-// async function displayMedias(medias) {
-
-// 	const $mediaSection = document.querySelector("photographer-media");
-
-//     medias.forEach((media) => {
-//       const mediaModel = mediaFactory(media);
-// 		  mediaFactory(media);
-//       //const userCardDOM = mediaModel.getUserCardDOM();
-//        $mediaSection.appendChild(mediaModel);
-//     });
-// };
+init();
