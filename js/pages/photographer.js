@@ -14,15 +14,14 @@ async function getAllDatas() {
 };
 //getAllDatas();
 
-
+//je récupère l'ID dans l'url:
+const urlParams = new URLSearchParams(window.location.search);
+const id_param = urlParams.get('id');
+//console.log(id_param);
 
 // fonction qui filtre les résultats JSON pour trouver l'id du photographe choisi
 // OK
 async function getOnePhotographer() {
-  //je récupère l'ID dans l'url:
-  const urlParams = new URLSearchParams(window.location.search);
-  const id_param = urlParams.get('id');
-  //console.log(id_param);
 
 //je place les datas photographes ds 1 constante:
  const { photographers } = await getAllDatas();
@@ -30,7 +29,7 @@ async function getOnePhotographer() {
 
  // Je cherche l'ID dans tous les photographes
  let currentPhotographer = photographers.find(element => element.id == id_param);
- console.log(currentPhotographer);
+ //console.log(currentPhotographer);
 
  return currentPhotographer;
 };
@@ -82,3 +81,21 @@ async function init() {
 
 
 init();
+
+
+
+// SECTION MEDIAS
+
+
+async function getMedias() {
+  const { media } = await getAllDatas();
+  console.log(media);
+
+
+
+}
+
+getMedias();
+// récupérer les objets médias du json
+// dans les objets médias, chercher les medias de l'id
+// filtrer uniquement les photos
