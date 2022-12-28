@@ -1,84 +1,77 @@
-// //Mettre le code JavaScript lié à la page photographer.html
+//HEADER
 
-
-// //HEADER
-
-//fonction pour récupérer les données JSON
-function getAllPhotographers() {
+//fonction pour récupérer toutes les données JSON
+// OK
+async function getAllDatas() {
   return fetch('../data/photographers.json')
       .then(res => {
           return res.json();
       })
       .then(dataJSON => {
           return dataJSON;
+          //console.log(dataJSON);
       })
-}
+};
+getAllDatas();
 
-//fonction qui filtre les résultats JSON pour trouver l'id du photographe choisi
+
+
+// fonction qui filtre les résultats JSON pour trouver l'id du photographe choisi
+// OK
 async function getOnePhotographer() {
+  //je récupère l'ID dans l'url:
   const urlParams = new URLSearchParams(window.location.search);
   const id_param = urlParams.get('id');
-  //console.log(id_param);
+  console.log(id_param);
 
- const { photographers } = await getAllPhotographers();
- //console.log(photographers);
+//je place les datas photographes ds 1 constante:
+ const { photographers } = await getAllDatas();
+ console.log(photographers);
 
- return photographers.find(element => element.id == id_param);
+ // Je cherche l'ID dans tous les photographes
+ let currentPhotographer = photographers.find(element => element.id == id_param);
+ console.log(currentPhotographer);
 
- //return currentPhotographer;
- //console.log(test);
+ return currentPhotographer;
 };
+getOnePhotographer()
+//console.log(getOnePhotographer());
 
-// peut être placé dans dossier JS/Templates
+
+
 // fonction pour afficher infos du photographe
-async function createPhotographerHeader() {
-  //const { name, city, country, tagline, portrait } = data;
-  const $header = document.querySelector('photograph-header');
+// OK
+async function createPhotographerHeader(currentPhotographer) {
 
-  const photographHeaderInfos = `
-    <div class="photograph-header-infos">
-      <h1>${name}</h1>
-      <p class="location">${city}, ${country}</p>
-      <p>${tagline}</p>
+  // je place le résultat attendu dans datas
+  const datas = await currentPhotographer;
+  //console.log(datas)
+
+  //je cible la section photographer-header dans le DOM
+  const $header = document.querySelector('.photographer-header');
+
+  //je crée ma structure HTML
+  const photographerHeaderInfos = `
+    <div class="photographer-header-infos">
+      <h1>${datas.name}</h1>
+      <p class="location">${datas.city}, ${datas.country}</p>
+      <p>${datas.tagline}</p>
     </div>
-    <div class="photograph-header__contact-btn">
+    <div class="photographer-header__contact-btn">
       <button class="contact_button"></button>
     </div>
-    <div class="photograph-header__avatar">
-      <img src="/assets/photographers/${portrait}" alt="avatar du photographe ${name}">
+    <div class="photographer-header__avatar">
+      <img src="/assets/photographers/${datas.portrait}" alt="avatar du photographe ${datas.name}">
     </div>
   `;
 
-  $header.innerHTML(photographHeaderInfos);
+  //j'insérer ma structure dans le HTML
+  $header.innerHTML = photographerHeaderInfos;
 
   return $header
-}
-
-//fonction async pour afficher données
-async function displayPhotographer() {
-
-  const currentPhotographer = await getOnePhotographer(); // j'obtiens un objet
-  console.log(currentPhotographer)
-  //const { name, city, country, tagline, portrait } = currentPhotographer;
-  //console.log(name);
-  createPhotographerHeader(currentPhotographer);
-
 };
+createPhotographerHeader(getOnePhotographer());
 
-displayPhotographer();
-
-// // fonction asynchrone pour exécuter les deux précédentes fonctions
- //async function init() {
-
-// 3) fonction display photographerHeader
-//console.log(getOnePhotographer());
-    //const { photographers } = await getPhotographers();
-
-    //displayPhotographer(photographers);
-    //console.log(getOnePhotographer);
-//};
-
-//init();
 
 
 // async function displayMedias(medias) {

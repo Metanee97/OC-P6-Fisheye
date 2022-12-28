@@ -7,7 +7,7 @@ async function getMedias() {
     .then(datasJSON => {
       let { media } = datasJSON;
       //return media;
-      console.log(media)
+      //console.log(media)
     })
 };
 

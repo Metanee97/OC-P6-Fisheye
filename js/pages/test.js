@@ -56,7 +56,7 @@ async function getPhotographers() {
         // la doc sur la destructuration : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
         // la syntaxe const { photographers } permet de récupérer l'attribut 'photographers' contenu dans l'objet finale que getPhotographers() retourne
         const { photographers } = await getPhotographers(); // AWAIT = ATTEND que la function getPhotographers() retourne une données
-        console.log(photographers)
+        //console.log(photographers)
         displayData(photographers);
     };
 
@@ -104,7 +104,7 @@ async function init() {
     // et place les dans la constante photographers
     const { photographers } = await getPhotographers(); // pq le mot clé await ici et pas sur fonction display data et init?
 
-    console.log(photographers)
+    //console.log(photographers)
     //exécute fonction d'affichahe en utilisant la constante précédent photogrpahers
     displayData(photographers);
 };
@@ -119,14 +119,14 @@ init();
 
 //méthode pour récupérer données contenues dans fichier JSON
 // méthode asynchrone car on ne sait pas combien de temps va prendre la réponse pour nous parvenir
-async function getPhotographers() {
-  return fetch('../data/photographers.json')  // emplacement du JSON entre () - va chercher les données et renvoie une promesse
-      .then(res => {          // ensuite attend la réponse - res = nom donné à l'objet retourné
-          return res.json();  // méthode .json() pour convertir les données en JSON
-      .then(dataJSON => {  //ensuite attend la promesse de conversion - dataJSON est un nom arbitraire qui indique que c'est un JSON
-          return dataJSON;
-      })
-}
+// async function getPhotographers() {
+//   return fetch('../data/photographers.json')  // emplacement du JSON entre () - va chercher les données et renvoie une promesse
+//       .then(res => {          // ensuite attend la réponse - res = nom donné à l'objet retourné
+//           return res.json();  // méthode .json() pour convertir les données en JSON
+//       .then(dataJSON => {  //ensuite attend la promesse de conversion - dataJSON est un nom arbitraire qui indique que c'est un JSON
+//           return dataJSON;
+//       })
+// }
 
 // FONCTION ASYNCHRONE POUR AFFICHER DONNEES
 async function displayData(photographers) { //a quoi correspond photographers?
@@ -154,9 +154,21 @@ async function init() {
     // et place les dans la constante photographers
     const { photographers } = await getPhotographers(); // pq le mot clé await ici et pas sur fonction display data et init?
 
-    console.log(photographers)
+    //console.log(photographers)
     //exécute fonction d'affichahe en utilisant la constante précédent photogrpahers
     displayData(photographers);
 };
 
 init();
+
+
+function Fruit(n) {
+  this.name = n;
+}
+
+
+let pomme = new Fruit ("Pomme");
+
+console.log(Fruit.prototype);
+console.log(pomme);
+//console.log(testDeFonction);
