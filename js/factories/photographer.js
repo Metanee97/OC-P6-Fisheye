@@ -14,7 +14,7 @@ function photographerFactory(data) {  //2 fonctions?
       link.classList.add("photographerPage__link");  // j'ajoute la classe "photographerPage__link"
 
       const img = document.createElement('img'); //je crée l'avatar
-      img.classList.add('avatar');
+      img.classList.add('photographer__avatar');
       img.setAttribute("src", picture);
       img.setAttribute("alt", `Portrait de ${name}`);
       img.setAttribute("role", "button");

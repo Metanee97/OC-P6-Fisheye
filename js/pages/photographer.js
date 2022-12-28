@@ -53,15 +53,13 @@ async function createPhotographerHeader(currentPhotographer) {
   //je crée ma structure HTML
   const photographerHeaderInfos = `
     <div class="photographer-header-infos">
-      <h1>${datas.name}</h1>
-      <p class="location">${datas.city}, ${datas.country}</p>
+      <h1 class="photographer-header-name">${datas.name}</h1>
+      <p class="photographer-header-location">${datas.city}, ${datas.country}</p>
       <p>${datas.tagline}</p>
     </div>
-    <div class="photographer-header__contact-btn">
-      <button class="contact_button"></button>
-    </div>
-    <div class="photographer-header__avatar">
-      <img src="/assets/photographers/${datas.portrait}" alt="avatar du photographe ${datas.name}">
+    <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+    <div>
+      <img class="photographer__avatar" src="/assets/photographers/${datas.portrait}" alt="avatar du photographe ${datas.name}">
     </div>
   `;
 
