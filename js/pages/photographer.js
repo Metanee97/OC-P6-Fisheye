@@ -42,7 +42,7 @@ async function getOnePhotographer() {
 // OK
 async function createPhotographerHeader(currentPhotographer) {
 
-  // je place le résultat attendu dans datas
+  // je place le résultat de fonction getONePhotographer dans datas
   const datas = await currentPhotographer;
   //console.log(datas)
 
@@ -79,23 +79,35 @@ async function init() {
 };
 
 
-
+// fonction qui exécute l'ensemble des fonctions d'affichage du photographe - OK
 init();
 
 
 
-// SECTION MEDIAS
+// SECTION MEDIAS //
 
 
-async function getMedias() {
+async function displayMedias() {
+  // récupère uniquement les médias du fichier JSON
   const { media } = await getAllDatas();
-  console.log(media);
+  // console.log(media); OK affiche tous les médias
+  const $mediaSection = document.querySelector(".photographer-media");
+  //parcourt les médias et affiche uniquement ceux de l'id de l'url de la page
+  media.forEach((element) => {
+    if (element.photographerId == id_param) {
+      //mettre fonction création média dans une variable
+      const mediaModel = mediaFactory(element);
+      const mediaCardDOM = mediaModel.createMediaGridDom();
+      // console.log(element); OK affiche chaque medi avec le bon ID
+      console.log(mediaModel)
+      $mediaSection.appendChild(mediaCardDOM);
+    }
+  });
+};
 
+displayMedias()
 
-
-}
-
-getMedias();
+// console.log(await getMedias());
 // récupérer les objets médias du json
 // dans les objets médias, chercher les medias de l'id
 // filtrer uniquement les photos
