@@ -96,11 +96,11 @@ async function displayMedias() {
   media.forEach((element) => {
     if (element.photographerId == id_param) {
       //mettre fonction création média dans une variable
-      const mediaModel = mediaFactory(element);
-      const mediaCardDOM = mediaModel.createMediaGridDom();
-      // console.log(element); OK affiche chaque medi avec le bon ID
-      console.log(mediaModel)
-      $mediaSection.appendChild(mediaCardDOM);
+      //const mediaModel = mediaFactory(element);
+      //const mediaCardDOM = mediaModel.createMediaDOM();
+      console.log(element); //OK affiche chaque media avec le bon ID
+      //console.log(mediaModel)
+      //$mediaSection.appendChild(mediaCardDOM);
     }
   });
 };

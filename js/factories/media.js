@@ -6,18 +6,29 @@ function mediaFactory(datas) {
   //console.log(photographerId); OK affiche l'id de l'url
   const mediaImage = `assets/images/${image}`;
 
-  function createMediaGridDom() {
-    // éléments du DOM à créer
-    const article = document.createElement('article');
+  function createMediaDOM() {
+    // récupérer données à afficher
+    // cibler DOM
+    const $mediaSection = document.querySelector('.photographer-media');
+    // créer structure
+    const Onemedia = `
+      <article class="media__item">
+        <div>
+          <img class="one-media" src="/assets/images/${datas.image}" alt="avatar du photographe ${datas.name}">
+        </div>
+      </article>
+    `;
 
-    return (article);
+    // insérer structure
+    $mediaSection.innerHTML = Onemedia;
+
+    return ($mediaSection);
   }
  return { photographerId, title, likes, image };
 };
 
+//createMediaDOM();
 //console.log(mediaFactory(photographerId))
-
-
 
 
 
