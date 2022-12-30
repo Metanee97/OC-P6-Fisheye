@@ -1,17 +1,33 @@
 //fonction media factory
 
-// fonction pour récupérer les médias
-async function getMedias() {
-  return fetch('../data/photographers.json')
-    .then(res => res.json())
-    .then(datasJSON => {
-      let { media } = datasJSON;
-      //return media;
-      //console.log(media)
-    })
+function mediaFactory(datas) {
+
+  const { photographerId, title, likes, image  } = datas;
+  //console.log(photographerId); OK affiche l'id de l'url
+  const mediaImage = `assets/images/${image}`;
+
+  function createMediaGridDom() {
+    // éléments du DOM à créer
+    const article = document.createElement('article');
+
+    return (article);
+  }
+ return { photographerId, title, likes, image };
 };
 
-getMedias();
+//console.log(mediaFactory(photographerId))
+
+
+
+
+
+
+
+
+
+
+
+
 
 // récupérer tous les médias d'un seul ID
 // récupérer les médias dont la propriété est image
