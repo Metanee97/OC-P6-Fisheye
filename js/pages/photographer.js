@@ -101,6 +101,12 @@ async function displayMedias() {
           <img class="one-media" src="/assets/images/${element.photographerId}/${element.image}" alt="avatar du photographe ${element.name}">
         </div>
       </article>
+
+      <article class="media__item">
+        <div>
+          <img class="one-media" src="/assets/images/${element.photographerId}/${element.image}" alt="avatar du photographe ${element.name}">
+        </div>
+      </article>
     `;
 
     // insérer structure
@@ -108,7 +114,7 @@ async function displayMedias() {
       //mettre fonction création média dans une variable
       //const mediaModel = mediaFactory(element);
       //const mediaCardDOM = mediaModel.createMediaDOM();
-      console.log(element); //OK affiche chaque media avec le bon ID
+      //console.log(element); //OK affiche chaque media avec le bon ID
       //console.log(mediaModel)
       //$mediaSection.appendChild(mediaCardDOM);
     }

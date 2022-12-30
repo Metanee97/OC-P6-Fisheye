@@ -17,6 +17,11 @@ function mediaFactory(datas) {
           <img class="one-media" src="/assets/images/${datas.image}" alt="avatar du photographe ${datas.name}">
         </div>
       </article>
+      <article class="media__item">
+        <div>
+          <img class="one-media" src="/assets/images/${datas.image}" alt="avatar du photographe ${datas.name}">
+        </div>
+      </article>
     `;
 
     // insérer structure
