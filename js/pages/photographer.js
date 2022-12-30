@@ -95,6 +95,16 @@ async function displayMedias() {
   //parcourt les médias et affiche uniquement ceux de l'id de l'url de la page
   media.forEach((element) => {
     if (element.photographerId == id_param) {
+      const Onemedia = `
+      <article class="media__item">
+        <div>
+          <img class="one-media" src="/assets/images/${element.photographerId}/${element.image}" alt="avatar du photographe ${element.name}">
+        </div>
+      </article>
+    `;
+
+    // insérer structure
+    $mediaSection.innerHTML = Onemedia;
       //mettre fonction création média dans une variable
       //const mediaModel = mediaFactory(element);
       //const mediaCardDOM = mediaModel.createMediaDOM();
