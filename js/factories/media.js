@@ -2,38 +2,33 @@
 
 function mediaFactory(datas) {
 
-  const { photographerId, title, likes, image  } = datas;
-  //console.log(photographerId); OK affiche l'id de l'url
-  const mediaImage = `assets/images/${image}`;
+  const { photographerId, title, image  } = datas;
+  console.log(photographerId); //OK affiche l'id de l'url
+  const media = `assets/images/${photographerId}/${image}`;
 
   function createMediaDOM() {
     // récupérer données à afficher
     // cibler DOM
     const $mediaSection = document.querySelector('.photographer-media');
     // créer structure
-    const Onemedia = `
+    const oneMedia = `
       <article class="media__item">
         <div>
-          <img class="one-media" src="/assets/images/${datas.image}" alt="avatar du photographe ${datas.name}">
+          <img class="one-media" src="/assets/images/${media}" alt="">
         </div>
-      </article>
-      <article class="media__item">
-        <div>
-          <img class="one-media" src="/assets/images/${datas.image}" alt="avatar du photographe ${datas.name}">
-        </div>
+        <p>${title}</p>
       </article>
     `;
 
     // insérer structure
-    $mediaSection.innerHTML = Onemedia;
+    $mediaSection.innerHTML = oneMedia;//
 
-    return ($mediaSection);
-  }
- return { photographerId, title, likes, image };
+    return $mediaSection;
+   };
+
+ return createMediaDOM ;
 };
 
-//createMediaDOM();
-//console.log(mediaFactory(photographerId))
 
 
 

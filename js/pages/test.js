@@ -172,3 +172,6 @@ let pomme = new Fruit ("Pomme");
 console.log(Fruit.prototype);
 console.log(pomme);
 //console.log(testDeFonction);
+
+
+  
