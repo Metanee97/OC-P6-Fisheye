@@ -17,8 +17,11 @@ async function getAllDatas() {
 //je récupère l'ID dans l'url:
 const urlParams = new URLSearchParams(window.location.search);
 const id_param = urlParams.get('id');
+const id_paramNumb = parseInt(id_param);
+//console.log(id_paramNumb); // OK
 //console.log(id_param);
-
+//je cible la section photographer-header dans le DOM
+  const $header = document.querySelector('.photographer-header');
 
 
 // fonction qui filtre les résultats JSON pour trouver l'id du photographe choisi
@@ -47,8 +50,7 @@ async function displayPhotographerHeader(currentPhotographer) {
   const actualPhotographer = await currentPhotographer;
   // console.log(actualPhotographer)// OK
 
-  //je cible la section photographer-header dans le DOM
-  const $header = document.querySelector('.photographer-header');
+
 
   //je crée ma structure HTML
   const photographerHeaderInfos = `
@@ -89,25 +91,44 @@ init();
 
 // SECTION MEDIAS //
 
-async function displayMedias() {
-  // récupère uniquement les médias du fichier JSON:
-  const { media } = await getAllDatas();
-  //console.log(media); //OK affiche tous les médias
+const $mediaSection = document.querySelector('.photographer-media');
 
-  const mediasOfCurrentPhotographer = [];
-  //parcourt les médias et affiche uniquement ceux de l'id de l'url de la page
-  media.forEach((element) => {
-    if (element.photographerId == id_param) {
-      console.log(mediasOfCurrentPhotographer.push(element ++));
-      // console.log(element);
-    }
-  });
-};
+async function displayMedias() {
+
+  const { media } = await getAllDatas();
+  const mediasToDisplay = media.filter(media => media.photographerId === id_paramNumb);
+  let DOM = "";
+
+  mediasToDisplay.forEach(media => DOM += mediaFactory(media));
+  $mediaSection.innerHTML = DOM;
+}
 
 displayMedias();
 
-//  A TESTER
 
+/////////////////////////////////////////////
+
+// async function displayMedias() {
+//   // récupère uniquement les médias du fichier JSON:
+//   const { media } = await getAllDatas();
+//   //console.log(media); //OK affiche tous les médias
+
+
+//   //parcourt les médias et affiche uniquement ceux de l'id de l'url de la page
+//   let DOMToDisplay = "";
+
+//   media.forEach((element) => {
+//     if (element.photographerId == id_param) {
+
+//       DOMToDisplay += createMediaDOM(element);
+//       //console.log(DOMToDisplay);
+//       $mediaSection.innerHTML = DOMToDisplay;
+//     }
+//   });
+// };
+
+// displayMedias();
+/////////////////////////////////////////////////////:
 // async function getCurrentMedias() {
 
 //   const mediasOfCurrentPhotographer = [];

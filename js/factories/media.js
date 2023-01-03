@@ -1,40 +1,53 @@
-//fonction media factory
+//fonction media factory pour créer les médias
 
-function mediaFactory(datas) {
+function mediaFactory(media) {
 
-  const { photographerId, title, image  } = datas;
-  console.log(photographerId); //OK affiche l'id de l'url
-  const media = `assets/images/${photographerId}/${image}`;
-
-  function createMediaDOM() {
-    // récupérer données à afficher
-    // cibler DOM
-    const $mediaSection = document.querySelector('.photographer-media');
-    // créer structure
-    const oneMedia = `
-      <article class="media__item">
-        <div>
-          <img class="one-media" src="/assets/images/${media}" alt="">
-        </div>
-        <p>${title}</p>
-      </article>
-    `;
-
-    // insérer structure
-    $mediaSection.innerHTML = oneMedia;//
-
-    return $mediaSection;
-   };
-
- return createMediaDOM ;
+  return templateImage(media);
 };
 
+// fonction card DOM image
+function templateImage(media) {
+  return `
+    <div class="media__article">
+      <a href="">
+        <img src="/assets/images/${media.photographerId}/${media.image}">
+      </a>
+      <p>${media.title}</p>
+    </div>
+  `;
+};
 
+///////////////////////////////////////////////////////////////////////////////////////////////
+//function mediaFactory(datas) {
 
+//   const { photographerId, title, image  } = datas;
+//   console.log(photographerId); //OK affiche l'id de l'url
+//   const media = `assets/images/${photographerId}/${image}`;
 
+//   function createMediaDOM() {
+//     // récupérer données à afficher
+//     // cibler DOM
+//     const $mediaSection = document.querySelector('.photographer-media');
+//     // créer structure
+//     const oneMedia = `
+//       <article class="media__item">
+//         <div>
+//           <img class="one-media" src="/assets/images/${media}" alt="">
+//         </div>
+//         <p>${title}</p>
+//       </article>
+//     `;
 
+//     // insérer structure
+//     $mediaSection.innerHTML = oneMedia;//
 
+//     return $mediaSection;
+//    };
 
+//  return createMediaDOM ;
+// };
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
