@@ -2,20 +2,30 @@
 
 function mediaFactory(media) {
 
-  return templateImage(media);
+  if (media.image !== undefined) return templateImage(media);
+  else return templateVideo(media);
 };
 
 // fonction card DOM image
 function templateImage(media) {
   return `
-    <div class="media__article">
+    <div class="media__item">
       <a href="">
-        <img src="/assets/images/${media.photographerId}/${media.image}">
+        <img class="media__item-image" src="/assets/images/${media.photographerId}/${media.image}">
       </a>
       <p>${media.title}</p>
     </div>
   `;
 };
+
+function templateVideo(media) {
+  return `
+    <div class="media__item">
+      <video class="media__item-video" src="/assets/images/${media.photographerId}/${media.video}"></video>
+      <p>${media.title}</p>
+    </div>
+  `;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //function mediaFactory(datas) {
