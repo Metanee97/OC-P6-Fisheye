@@ -21,7 +21,9 @@ function templateImage(media) {
 function templateVideo(media) {
   return `
     <div class="media__item">
+      <a href="">
       <video class="media__item-video" src="/assets/images/${media.photographerId}/${media.video}"></video>
+      </a>
       <p class="title-medias" >${media.title}</p>
     </div>
   `;

@@ -136,15 +136,31 @@ header {
   color: #901C1C;
 }
 
+.photographer-price {
+display: flex;
+justify-content: space-around;
+align-items: center;
+position: fixed;
+bottom: 0em;
+right: 1em;
+background-color: #DB8876;
+width: 35%;
+height: 60px;
+font-size: 2em;
+border-top-left-radius: 5px;
+border-top-right-radius: 5px;
+
+}
+
 /* .media {
   width: 300px;
   height: 300px;
 } */
 
-.wrapper-price {
+/* .wrapper-price {
   width: 30px;
   background-color: #D3573C;
   position: fixed;
   left: auto;
   right: 10px;
-}
+} */
