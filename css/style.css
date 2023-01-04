@@ -129,9 +129,22 @@ header {
 .media__item-video {
   height: 300px;
   width: 300px;
+  object-fit: cover;
+}
+
+.title-medias {
+  color: #901C1C;
 }
 
 /* .media {
   width: 300px;
   height: 300px;
 } */
+
+.wrapper-price {
+  width: 30px;
+  background-color: #D3573C;
+  position: fixed;
+  left: auto;
+  right: 10px;
+}

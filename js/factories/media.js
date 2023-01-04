@@ -13,7 +13,7 @@ function templateImage(media) {
       <a href="">
         <img class="media__item-image" src="/assets/images/${media.photographerId}/${media.image}">
       </a>
-      <p>${media.title}</p>
+      <p class="title-medias">${media.title}</p>
     </div>
   `;
 };
@@ -22,7 +22,7 @@ function templateVideo(media) {
   return `
     <div class="media__item">
       <video class="media__item-video" src="/assets/images/${media.photographerId}/${media.video}"></video>
-      <p>${media.title}</p>
+      <p class="title-medias" >${media.title}</p>
     </div>
   `;
 }

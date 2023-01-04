@@ -105,6 +105,29 @@ async function displayMedias() {
 
 displayMedias();
 
+// const $body = document.body;
+  // console.log($body)
+
+function displayLikes() {
+
+  const wrapperLikes = document.createElement('div');
+  wrapperLikes.classList.add('wrapper-likes');
+
+  $mediaSection.appendChild(wrapperLikes);
+
+  // const wrapperLikes = `
+  //   <div class="wrapper-price">
+  //     <p>Test</p>
+  //     <i></i>
+  //     <p>Test</p>
+  //   </div>
+  // `
+  // $mediaSection.innerHTML = wrapperLikes;
+
+  // return $mediaSection;
+};
+
+displayLikes();
 
 /////////////////////////////////////////////
 
