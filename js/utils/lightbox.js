@@ -1,20 +1,37 @@
-// Code de la lightbox
-
-
 // DOM
-const $mediaBtn = document.querySelectorAll('.media__item');
-console.log($mediaBtn)
+const $sectionMedias = document.querySelector('.photographer-media');
+const $closeButtonLightbox = document.querySelector('.lightbox-close');
+console.log($closeButtonLightbox); //OK
 
 //Evènement
-$mediaBtn.forEach((btn) => btn.addEventListener("click", displayLightbox));
-//$mediaBtn
+$sectionMedias.addEventListener("click", function(e) {
+  if (e.target.classList.contains('media__item')) {
+    openLightbox();
+  }
+});
 
 // Ouverture lightbox
-function displayLightbox() {
+function openLightbox() {
   const lightbox = document.getElementById('lightbox');
+  //console.log(lightbox)// ok
   lightbox.style.display= "block";
 };
 
+openLightbox();
 
-//cibler tous les élément media queryselectorall
-//gestionnaire pour click et ouverture lightbox
+//fermeture de la lightbox
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.style.display = "none";
+}
+
+
+
+// factory lightbox
+//factory DOM lightbox
+// function templateLightbox(media) {
+//   return `
+//     <img class="media__item-image" src="/assets/images/${media.photographerId}/${media.image}">
+
+//   `
+// }

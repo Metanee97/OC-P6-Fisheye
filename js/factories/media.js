@@ -10,7 +10,7 @@ function mediaFactory(media) {
 function templateImage(media) {
   return `
     <div class="media__item">
-      <a href="/assets/images/${media.photographerId}/${media.image}">
+      <a class="media__item" href="">
         <img class="media__item-image" src="/assets/images/${media.photographerId}/${media.image}">
       </a>
       <p class="title-medias">${media.title}</p>

@@ -21,6 +21,8 @@
       <section class="photographer-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </section>
+
+
       <!-- Media section -->
       <section class="photographer-media"></section>
 
@@ -28,7 +30,6 @@
         <p>297 081 <i class="fas fa-heart"></i></p>
         <p>300€/jour</p>
       </div>
-
 
     </main>
 
@@ -93,19 +94,21 @@
 
     <!-- Modal Lightbox -->
     <div id="lightbox">
+
+      <button class="lightbox-close"  onclick="closeLightbox()">
+        <img src="assets/icons/close-lightbox.svg" alt="croix pour fermer la lightbox" width="100%">
+      </button>
+
+      <button class="lightbox-prev ">
+        <img src="assets/icons/next.svg" alt="chevron d'affichage image précédente" width="100%">
+      </button>
+
       <button class="lightbox-next">
-        <img src="assets/icons/close.svg" alt="">
+        <img src="assets/icons/next.svg" alt="chevron d'affichage image suivante" width="100%">
       </button>
 
-      <button class="lightbox-previous">
-        <img src="assets/icons/previous.svg" alt="">
-      </button>
-
-      <button class="lightbox-next">
-        <img src="assets/icons/next.svg" alt="">
-      </button>
-      <div class="lightbox__content">
-
+      <div class="lightbox__container">
+        <!-- <img src="assets/images/243/Animals_Rainbow.jpg" alt="" width="500px" > -->
       </div>
 
     </div>
