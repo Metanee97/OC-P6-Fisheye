@@ -94,7 +94,8 @@
 
 /* Lightbox */
 
-.lightbox__container {
+.lightbox__content {
+  display: none;
   display: flex;
   align-items: center;
   justify-content: center;
