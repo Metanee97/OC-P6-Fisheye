@@ -69,8 +69,10 @@ async function displayMedias() {
  async function init() {
 
   const photographerToDisplay = await getOnePhotographer();
+  console.log(photographerToDisplay);
   displayPhotographerHeader(photographerToDisplay);
   displayMedias();
+  displayPhotographerName(photographerToDisplay);
 
  };
 
