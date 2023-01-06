@@ -1,6 +1,15 @@
+//DOM
+const $wrapper = document.getElementById('main-wrapper');
+const $contactModal = document.getElementById('contact_modal');
+
+
 function displayModal() {
-    const modal = document.getElementById("contact_modal");
+  const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
+
+  $wrapper.setAttribute("aria-hidden", "true");
+  $contactModal.setAttribute("aria-hidden", "false");
+
 }
 
 function closeModal() {
