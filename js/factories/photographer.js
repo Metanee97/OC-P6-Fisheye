@@ -16,7 +16,7 @@ function photographerFactory(data) {
       const img = document.createElement('img'); //je crée l'avatar
       img.classList.add('photographer__avatar');
       img.setAttribute("src", picture);
-      img.setAttribute("alt", `Portrait de ${name}`);
+      img.setAttribute("alt", ` `);
       img.setAttribute("role", "button");
       img.setAttribute("aria-label", `Accéder à la page de ${name}`);
 
@@ -25,7 +25,7 @@ function photographerFactory(data) {
       photographerName.innerHTML = name;
 
       const location = document.createElement('p'); //je crée une balise pour la ville
-      location.classList.add('location');
+      location.classList.add('photographer-location');
       location.innerHTML = `${city}, ${country}`;
 
       const quote = document.createElement( 'p' ); //je crée une balise pour la citation

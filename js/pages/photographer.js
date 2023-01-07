@@ -36,7 +36,7 @@ async function displayPhotographerHeader(currentPhotographer) {
   const photographerHeaderInfos = `
     <div class="photographer-header-infos">
       <h1 class="photographer-header-name">${actualPhotographer.name}</h1>
-      <p class="photographer-header-location">${actualPhotographer.city}, ${actualPhotographer.country}</p>
+      <p class="photographer-location">${actualPhotographer.city}, ${actualPhotographer.country}</p>
       <p>${actualPhotographer.tagline}</p>
     </div>
     <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
@@ -69,7 +69,7 @@ async function displayMedias() {
  async function init() {
 
   const photographerToDisplay = await getOnePhotographer();
-  console.log(photographerToDisplay);
+  //console.log(photographerToDisplay);
   displayPhotographerHeader(photographerToDisplay);
   displayMedias();
   displayPhotographerName(photographerToDisplay);

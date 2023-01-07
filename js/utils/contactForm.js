@@ -13,8 +13,10 @@ function displayModal() {
 }
 
 function closeModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.style.display = "none";
+  const modal = document.getElementById("contact_modal");
+  modal.style.display = "none";
+  $wrapper.setAttribute("aria-hidden", "false");
+  $contactModal.setAttribute("aria-hidden", "true");
 }
 
 // fonction affichage nom du photographe dans la modale de contact
@@ -22,6 +24,6 @@ function closeModal() {
 function displayPhotographerName(photographerToDisplay) {
 
   const photographerName = photographerToDisplay.name;
-  const $formTitle = document.querySelector('.form-title');
+  const $formTitle = document.querySelector('#form-title');
   $formTitle.insertAdjacentHTML('beforeend', `<br> ${photographerName}`);
 };

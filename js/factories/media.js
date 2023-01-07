@@ -9,8 +9,8 @@ function mediaFactory(media) {
 // fonction card DOM image
 function templateImage(media) {
   return `
-    <div class="media__item">
-      <a class="media__item" href="">
+    <div class="media__item" onclick="openLightbox()">
+      <a class="media__item" href="" >
         <img class="media__item-image" src="/assets/images/${media.photographerId}/${media.image}">
       </a>
       <p class="title-medias">${media.title}</p>
@@ -20,7 +20,7 @@ function templateImage(media) {
 
 function templateVideo(media) {
   return `
-    <div class="media__item">
+    <div class="media__item" onclick="openLightbox()">
       <a href="">
       <video class="media__item-video" src="/assets/images/${media.photographerId}/${media.video}"></video>
       </a>
