@@ -1,3 +1,4 @@
+
 //HEADER
 
 //fonction pour récupérer toutes les données JSON
@@ -11,7 +12,7 @@ async function getAllDatas() {
       })
 };
 
-//récupération de l'ID dans l'url:
+//récupération de l'ID dans l'url
 const urlParams = new URLSearchParams(window.location.search);
 const id_param = urlParams.get('id');
 const id_paramNumb = parseInt(id_param);
@@ -49,12 +50,14 @@ async function displayPhotographerHeader(currentPhotographer) {
   return $header
 };
 
+
+
 // SECTION MEDIAS //
 
 //je cible la section médias
 const $mediaSection = document.querySelector('.photographer-media');
 
-//fonction pour afficher les données
+//fonction asynchrone pour afficher les données médias
 async function displayMedias() {
 
   const { media } = await getAllDatas();

@@ -12,7 +12,7 @@
 
 .contact_button {
     font-size: 20px;
-    font-weight: bold;
+    /* font-weight: bold; */
     color: white;
     padding: 11px;
     width: 170px;
@@ -22,6 +22,10 @@
     border-radius: 5px;
     /* cursor: pointer; */
     margin-top: 0.7em;
+}
+
+.contact_button:hover {
+  transform: scale(1.1);
 }
 
 button {

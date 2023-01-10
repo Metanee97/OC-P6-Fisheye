@@ -19,20 +19,23 @@
 
       <!-- Photograph Header - Main informations -->
       <main id="main">
-        <section class="photographer-header">
+        <section class="photographer-header" role="heading">
           <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
         </section>
 
 
         <!-- Media section -->
         <section class="photographer-media"></section>
-        <div id="lightbox-container"></div>
+        <section
+          id="lightbox-container"
+          aria-roledescription="carousel"
+          aria-label="Médias du photographe"
+          ></section>
 
-
-        <div class="photographer-price">
+        <aside class="photographer-price" role="complementary">
           <p>297 081 <i class="fas fa-heart"></i></p>
           <p>300€/jour</p>
-        </div>
+        </aside>
 
       </main>
 
@@ -139,6 +142,6 @@
     <script src="/js/factories/photographer.js"></script>
     <script src="/js/pages/photographer.js"></script>
     <script src="/js/utils/contactForm.js"></script>
-    <script src="/js/utils/lightbox.js"></script>
+    <!-- <script src="/js/utils/lightbox.js"></script> -->
   </body>
 </html>

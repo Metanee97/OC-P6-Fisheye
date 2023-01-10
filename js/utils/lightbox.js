@@ -3,10 +3,11 @@
 //   $lightbox.innerHTML = templateLightbox();
 //   console.log(lightbox)
 // Ouverture lightbox
-function openLightbox() {
+function openLightbox(event) {
+  event.preventDefault();
   const $lightbox = document.getElementById('lightbox-container');
   $lightbox.innerHTML = templateLightbox();
-  console.log(lightbox);
+  console.log($lightbox);
   // $lightbox.style.display= "block";
 
   // $wrapper.setAttribute("aria-hidden", "false");
