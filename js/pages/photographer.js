@@ -61,10 +61,12 @@ const $mediaSection = document.querySelector('.photographer-media');
 async function displayMedias() {
 
   const { media } = await getAllDatas();
-  const mediasToDisplay = media.filter(media => media.photographerId === id_paramNumb);
-  let DOM = "";
 
-  mediasToDisplay.forEach(media => DOM += mediaFactory(media));
+  const mediasToDisplay = media.filter(media => media.photographerId === id_paramNumb);
+  console.log(mediasToDisplay);
+  let DOM = "";
+  //console.log(mediaFactory(media));
+  mediasToDisplay.forEach(media => DOM += mediaFactory(media).sortMedias());
   $mediaSection.innerHTML = DOM;
 }
 

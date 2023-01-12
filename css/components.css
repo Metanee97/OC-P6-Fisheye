@@ -34,6 +34,14 @@ button {
   background-color: transparent;
 }
 
+.fa-heart {
+  color: #901C1C;
+}
+.media-item__footer {
+  display: flex;
+  justify-content: space-between;
+}
+
 .modal {
   position: relative;
   border-radius: 5px;

@@ -120,6 +120,7 @@ a:focus, input:focus, button:focus, select:focus {
 .media__item {
   grid-auto-rows: 1fr 1fr 1fr;
   grid-auto-rows: minmax(100px, auto);
+  border: 1px solid black;
 }
 
 .media__item-image {
