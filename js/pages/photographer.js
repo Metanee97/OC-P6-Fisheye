@@ -61,14 +61,17 @@ const $mediaSection = document.querySelector('.photographer-media');
 async function displayMedias() {
 
   const { media } = await getAllDatas();
-
   const mediasToDisplay = media.filter(media => media.photographerId === id_paramNumb);
-  console.log(mediasToDisplay);
+
   let DOM = "";
-  //console.log(mediaFactory(media));
-  mediasToDisplay.forEach(media => DOM += mediaFactory(media).sortMedias());
-  $mediaSection.innerHTML = DOM;
-}
+
+  mediasToDisplay.forEach(media => {
+    const mediaModel = mediaFactory(media);
+    DOM += mediaModel.sortMedias().createHTMLCard();
+  });
+    $mediaSection.innerHTML = DOM;
+};
+
 
 // fonction d'exécution
  async function init() {
@@ -76,9 +79,9 @@ async function displayMedias() {
   const photographerToDisplay = await getOnePhotographer();
   //console.log(photographerToDisplay);
   displayPhotographerHeader(photographerToDisplay);
-  displayMedias();
+  //displayMedias();
   displayPhotographerName(photographerToDisplay);
-
+  displayMedias();
  };
 
 init();

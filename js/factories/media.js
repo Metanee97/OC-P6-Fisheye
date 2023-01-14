@@ -2,7 +2,7 @@
 
 function mediaFactory(media) {
   const { image } = media;
-  //console.log(media.image);
+  //console.log({image});
 
   function sortMedias() {
     if (image) return templateImage(media);
@@ -11,7 +11,7 @@ function mediaFactory(media) {
 
   return { sortMedias }
 };
-console.log(sortMedias);
+
 // fonction card DOM image
 function templateImage(media) {
   function createHTMLCard() {
@@ -22,6 +22,7 @@ function templateImage(media) {
       </a>
       <div class="media-item__footer">
         <p class="title-medias">${media.title}</p>
+        <span>0</span>
         <button>
           <i class="fas fa-heart"></i>
         </button>
@@ -29,22 +30,26 @@ function templateImage(media) {
     </div>
   `;
   }
-
   return { createHTMLCard }
 };
 
+// fonction card DOM video
 function templateVideo(media) {
-  return `
+  function createHTMLCard() {
+    return `
     <div class="media__item" onclick="openLightbox()">
       <a href="">
         <video class="media__item-video" src="/assets/images/${media.photographerId}/${media.video}"></video>
       </a>
       <div class="media-item__footer">
         <p class="title-medias" >${media.title}</p>
+        <span>0</span>
         <button>
           <i class="fas fa-heart"></i>
         </button>
       </div>
     </div>
   `;
+  }
+  return { createHTMLCard }
 }
