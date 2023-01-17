@@ -1,7 +1,7 @@
 
-//HEADER
+////////////////////////  PHOTOGRAPHER HEADER  ///////////////////////////////////////
 
-//fonction pour récupérer toutes les données JSON
+// Récupérer toutes les données JSON
 async function getAllDatas() {
   return fetch('../data/photographers.json')
       .then(res => {
@@ -12,26 +12,25 @@ async function getAllDatas() {
       })
 };
 
-//récupération de l'ID dans l'url
+
+//récupération de l'Id dans l'url du photographe cliqué
 const urlParams = new URLSearchParams(window.location.search);
 const id_param = urlParams.get('id');
 const id_paramNumb = parseInt(id_param);
 
-//je cible la section photographer-header dans le DOM
+// Section photographer-header sur page photographer.html
 const $header = document.querySelector('.photographer-header');
 
-// fonction qui filtre les résultats JSON pour trouver l'id du photographe courant
+// trouve le photographe courant parmi tous les photographes
 async function getOnePhotographer() {
-
  const { photographers } = await getAllDatas();
  let currentPhotographer = photographers.find(element => element.id == id_param);
-
  return currentPhotographer;
 };
 
-// fonction pour afficher infos du photographe courant
-async function displayPhotographerHeader(currentPhotographer) {
 
+// afficher infos du photographe courant dans le photographer-header
+async function displayPhotographerHeader(currentPhotographer) {
   const actualPhotographer = await currentPhotographer;
 
   const photographerHeaderInfos = `
@@ -46,22 +45,26 @@ async function displayPhotographerHeader(currentPhotographer) {
     </div>
   `;
   $header.innerHTML = photographerHeaderInfos;
-
   return $header
 };
 
 
 
-// SECTION MEDIAS //
 
-//je cible la section médias
+
+
+
+////////////////////////  SECCTION MEDIAS  ///////////////////////////////////////
+
+// cible la section médias
 const $mediaSection = document.querySelector('.photographer-media');
 
-//fonction asynchrone pour afficher les données médias
+// Afficher les médias : img, nom, likes
 async function displayMedias() {
 
-  const { media } = await getAllDatas();
-  const mediasToDisplay = media.filter(media => media.photographerId === id_paramNumb);
+  const { media } = await getAllDatas(); // renvoie un array des médias tous photographes confondus
+
+  const mediasToDisplay = media.filter(media => media.photographerId === id_paramNumb); //renvoie un array des médias du photographe en cours
 
   let DOM = "";
 
@@ -69,19 +72,20 @@ async function displayMedias() {
     const mediaModel = mediaFactory(media);
     DOM += mediaModel.sortMedias().createHTMLCard();
   });
+
     $mediaSection.innerHTML = DOM;
 };
+
 
 
 // fonction d'exécution
  async function init() {
 
   const photographerToDisplay = await getOnePhotographer();
-  //console.log(photographerToDisplay);
   displayPhotographerHeader(photographerToDisplay);
-  //displayMedias();
   displayPhotographerName(photographerToDisplay);
   displayMedias();
  };
+
 
 init();

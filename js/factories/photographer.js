@@ -45,5 +45,17 @@ function photographerFactory(data) {
 
       return (article);
     }
-    return { createPhotographerCardDOM }
+
+    function getPhotographerPrice() {
+      const $photographerPrice = document.getElementById('photographer-likes-price');
+
+      $photographerPrice.innerHTML = `
+        <p class="photographer-likes">${totalLikes}
+          <i class="fas fa-heart"></i>
+        </p>
+        <p class="photographer-price">${price}€/jour</p>
+      `
+       return $photographerPrice
+    }
+    return { getPhotographerPrice, createPhotographerCardDOM }
 };

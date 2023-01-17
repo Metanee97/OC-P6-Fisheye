@@ -16,8 +16,8 @@ function mediaFactory(media) {
 function templateImage(media) {
   function createHTMLCard() {
     return `
-    <div class="media__item" >
-      <a class="media__item" href="" >
+    <div class="media__item" onclick="displayLighthbox()">
+      <a class="media__item" href="">
         <img class="media__item-image" src="/assets/images/${media.photographerId}/${media.image}">
       </a>
       <div class="media-item__footer">
@@ -38,7 +38,7 @@ function templateVideo(media) {
   function createHTMLCard() {
     return `
     <div class="media__item">
-      <a href="">
+      <a class="media__item" href="" onclick="displayLighthbox()">
         <video class="media__item-video" src="/assets/images/${media.photographerId}/${media.video}"></video>
       </a>
       <div class="media-item__footer">
@@ -55,11 +55,9 @@ function templateVideo(media) {
 }
 
 
-
-
-
-
-
+/////////////////////////////////////////////////:
+//////////////////////////TOTAL LIKES//////////////////
+//////////////////////////////////////////:
 
 
 
