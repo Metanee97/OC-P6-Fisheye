@@ -27,6 +27,12 @@ header {
   margin-left: 100px;
 }
 
+@media screen and (max-width: 900px) {
+  .logo {
+    margin-left: 50px;
+  }
+}
+
 a:hover, input:hover, button:hover, select:hover,
 a:focus, input:focus, button:focus, select:focus {
   font-weight: bold;
@@ -41,12 +47,29 @@ a:focus, input:focus, button:focus, select:focus {
   margin-top: 100px;
 }
 
-.photographer_section article {
+@media screen and (max-width: 900px) {
+  .photographer_section {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.photographer-card {
   justify-self: center;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.photographer-card__link {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.photographer-card__link:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
 }
 
 .photographer-name {
@@ -64,18 +87,21 @@ a:focus, input:focus, button:focus, select:focus {
   margin-bottom: 0.5em;
 }
 
+@media screen and (max-width: 900px) {
+  .photographer__avatar {
+    height: 150px;
+    width: 150px;
+  }
+}
+
 .photographer_section a {
   text-decoration: none;
 }
 
 .photographer_section p {
-  margin: 0;
+  margin: 0.1em;
 }
 
-.photographerPage__link:hover {
-  transform: scale(1.1);
-  transition: transform 0.3s ease-in-out;
-}
 
 .photographer-location {
   color: #901C1C;
@@ -87,7 +113,7 @@ a:focus, input:focus, button:focus, select:focus {
 
 
 
-/* PHOTOGRAPHER.HTML - Photographers Section */
+/* PHOTOGRAPHER.HTML - PHOTOGRAPHER HEADER */
 
 .photographer-header {
   display: flex;
@@ -105,50 +131,95 @@ a:focus, input:focus, button:focus, select:focus {
   color: #D3573C;
 }
 
+@media screen and (max-width: 900px) {
+  .photographer-header-name {
+    margin: 0;
+  }
+}
+
 .photographer-header-location {
   color: #901C1C;
   font-size: 1rem;
 }
 
+@media screen and (max-width: 900px) {
+  .photographer-header {
+    margin: 0;
+  }
+}
 
 
-/* PHOTOGRAPHER.HTML - Medias Section */
+
+
+/* PHOTOGRAPHER.HTML - MEDIAS GALLERY */
 
 .photographer-media {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 30px;
-  margin: 9em;
+  gap: 80px;
+  margin: 6.5em;
   /* grid-auto-rows: 1fr 1fr; */
 }
 
-.media__item {
+@media screen and (max-width: 900px) {
+  .photographer-media {
+    margin: 2em;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+}
+
+.media-item {
   grid-auto-rows: 1fr 1fr 1fr;
   grid-auto-rows: minmax(100px, auto);
-  border: 1px solid black;
-}
-
-.media__item-image {
-  height: 300px;
-  width: 300px;
-  object-fit: cover;
-  transform: scale(1.1);
-  transition: transform 0.3s ease-in-out;
-}
-
-.media__item:hover {
-  transform: scale(1.1);
-  transition: transform 0.3s ease-in-out;
-}
-
-.media__item-video {
-  height: 300px;
-  width: 300px;
-  object-fit: cover;
-}
-
-.title-medias {
   color: #901C1C;
+  height: 350px;
+  /* border: 1px solid black; */
+  font-size: 1.2rem;
+}
+
+.media-item__img,
+.media-item__video {
+  height: 280px;
+  width: 100%;
+  object-fit: cover;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+.media-item__img:hover,
+.media-item__video:hover {
+  transform: scale(1.1);
+}
+
+.media-item__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.media-item__likes-section {
+  display: flex;
+}
+
+#nbLikes {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.likes-icon {
+  font-size: 1.2rem;
+  color: #901C1C;
+}
+
+/* .fa-heart {
+  color: #901C1C;
+} */
+
+/* aside block with price and likes */
+.photographer-price {
+  font-size: 1.2rem;
 }
 
 #photographer-likes-price {
