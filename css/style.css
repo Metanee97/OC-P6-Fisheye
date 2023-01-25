@@ -213,14 +213,14 @@ a:focus, input:focus, button:focus, select:focus {
   color: #901C1C;
 }
 
-/* .fa-heart {
-  color: #901C1C;
-} */
 
-/* aside block with price and likes */
-.photographer-price {
+
+
+/* PHOTOGRAPHER.HTML - BLOCK WITH LIKES & PRICE */
+
+/* .photographer-price {
   font-size: 1.2rem;
-}
+} */
 
 #photographer-likes-price {
 display: flex;
@@ -231,12 +231,16 @@ bottom: 0em;
 right: 1em;
 background-color: #DB8876;
 color: black;
-width: 35%;
+width: 25%;
 height: 60px;
-font-size: 2em;
+font-size: 1.2em;
 border-top-left-radius: 5px;
 border-top-right-radius: 5px;
 }
+
+/* .fa-heart {
+  font-size: 1.2rem;
+} */
 
 /* .media {
   width: 300px;
