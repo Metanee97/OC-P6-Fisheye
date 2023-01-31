@@ -2,16 +2,17 @@
 
 function photographerFactory(data) {
     const { name, city, country, portrait, tagline, price, id } = data;
+    //console.log({data} );
     const picture = `assets/photographers/${portrait}`;
 
-    function createPhotographerCardDOM() {
 
+    function createPhotographerCardDOM() {
       const article = document.createElement( 'article' );
       article.classList.add('photographer-card') // je crée un article avec les infos photographes
 
       const link = document.createElement('a');  //je crée un lien
       link.setAttribute("href", `photographer.html?id=${id}` );
-      link.classList.add("photographerPage__link");  // j'ajoute la classe "photographerPage__link"
+      link.classList.add("photographer-card__link");  // j'ajoute la classe "photographerPage__link"
 
       const img = document.createElement('img'); //je crée l'avatar
       img.classList.add('photographer__avatar');
@@ -42,20 +43,49 @@ function photographerFactory(data) {
       article.appendChild(location);
       article.appendChild(quote);
       article.appendChild(pricePerDay);
-
-      return (article);
+      //console.log( {article});
+      return article;
     }
 
-    function getPhotographerPrice() {
-      const $photographerPrice = document.getElementById('photographer-likes-price');
+    // function createPhotographerHeader() {
+    //     const photographerHeader = document.createElement('div');
+    //     photographerHeader.classList.add('photographer-header-infos');
+    //     photographerHeader.innerHTML = `${actualPhotographer.name}`;
 
-      $photographerPrice.innerHTML = `
-        <p class="photographer-likes">${totalLikes}
-          <i class="fas fa-heart"></i>
-        </p>
-        <p class="photographer-price">${price}€/jour</p>
-      `
-       return $photographerPrice
+    //     return photographerHeader;
+
+    // }
+
+    function createPhotographerPriceDOM() {
+
+      //const $photographerPrice = document.getElementById('photographer-likes-price');
+      //console.log($photographerPrice);
+
+      const price = document.createElement('p');
+      price.classList.add('photographer-price');
+      price.innerHTML = `${price}€/jour`;
+
+      return price
     }
-    return { getPhotographerPrice, createPhotographerCardDOM }
+
+  //   function displayPhotographerHeader(currentPhotographer) {
+  //     const actualPhotographer = currentPhotographer;
+
+  //     const photographerHeaderInfos = `
+  //   <div class="photographer-header-infos">
+  //     <h1 class="photographer-header-name">${actualPhotographer.name}</h1>
+  //     <p class="photographer-location">${actualPhotographer.city}, ${actualPhotographer.country}</p>
+  //     <p>${actualPhotographer.tagline}</p>
+  //   </div>
+  //   <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+  //   <div>
+  //     <img class="photographer__avatar" src="/assets/photographers/${actualPhotographer.portrait}" alt="avatar du photographe ${actualPhotographer.name}">
+  //   </div>
+  // `;
+  // $header.innerHTML = photographerHeaderInfos;
+  // return $header
+  //   }
+
+    return { createPhotographerCardDOM, createPhotographerPriceDOM }
 };
+//createPhotographerPriceDOM

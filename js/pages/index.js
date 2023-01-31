@@ -6,19 +6,20 @@
           return res.json();
       })
       .then(dataJSON => {
+        //console.log({dataJSON})
           return dataJSON;
       })
 }
 
 // fonction asynchrone pour afficher les données phtographes sur la page accueil index.html
-async function displayData(photographers) {
+async function displayphotographers(photographers) {
     const $photographersSection = document.querySelector(".photographer_section");
 
     photographers.forEach((photographer) => {
         const photographerModel = photographerFactory(photographer);
-        //console.log(photographerModel);
+        console.log( photographerModel);
         const photographerCardDOM = photographerModel.createPhotographerCardDOM();
-        //console.log(photographerCardDOM);
+        //console.log({photographerCardDOM} );
         $photographersSection.appendChild(photographerCardDOM);
     });
 };
@@ -27,7 +28,8 @@ async function displayData(photographers) {
 async function init() {
     //récupère uniquement le tableau photographers de l'objet json dans variable photographers
     const { photographers } = await getPhotographers();
-    displayData(photographers);
+    //console.log(photographers);
+    displayphotographers(photographers);
 };
 
 init();

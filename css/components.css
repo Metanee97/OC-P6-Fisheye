@@ -28,7 +28,7 @@
   transform: scale(1.1);
 }
 
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 900px) {
   .contact_button {
     font-size: 15px;
     width: 120px;
