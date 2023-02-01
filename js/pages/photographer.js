@@ -15,20 +15,17 @@ async function getAllDatas() {
 
 //récupération de l'Id dans l'url du photographe cliqué
 const urlParams = new URLSearchParams(window.location.search);
-const id_param = urlParams.get('id');
-//console.log({id_param}); //string 243
-const id_paramNumb = parseInt(id_param);
-//console.log({id_paramNumb}); //number
-// Section photographer-header sur page photographer.html
+const id_param = urlParams.get('id');   //string 243
+const id_paramNumb = parseInt(id_param);   //number
+
 //DOM
 const $header = document.querySelector('.photographer-header');
 
-//console.log($photographerPrice);
 
-// trouve le photographe courant parmi tous les photographes
+// trouve le photographe courant
 async function getOnePhotographer() {
  const { photographers } = await getAllDatas();
- //const test = await getAllDatas();
+
  let currentPhotographer = photographers.find(element => element.id === id_paramNumb);
  return currentPhotographer;
 };
@@ -56,15 +53,32 @@ async function displayPhotographerHeader(currentPhotographer) {
 
 ////////////////////////  SECTION MEDIAS  ///////////////////////////////////////
 
-// cible la section médias
+// DOM
 const $mediaSection = document.querySelector('.photographer-media');
 
-// Afficher les médias : img, nom, likes
+const sortOrder = Object.freeze({
+  favorite: 'likes',
+  title: 'title',
+  date: 'date'
+});
 
-async function displayMedias() {
+// Afficher les médias : img, nom, likes
+async function displayMedias(sortOrder, desc = false) {
 
   const { media } = await getAllDatas(); // renvoie un array des médias tous photographes confondus
   const mediasToDisplay = media.filter(media => media.photographerId === id_paramNumb); //renvoie un array des médias du photographe en cours
+
+  mediasToDisplay.sort(function(a, b) {
+    if (a[sortOrder] < b[sortOrder]) {
+      return -1;
+    }
+    if (a[sortOrder] > b[sortOrder]) {
+      return 1;
+    }
+    return 0;
+  })
+
+  if (desc) mediasToDisplay.reverse();
 
   let DOM = "";
 
@@ -76,8 +90,15 @@ async function displayMedias() {
     $mediaSection.innerHTML = DOM;
 };
 
+function changeSort(value) {
+  if (value == 'title') displayMedias(sortOrder.title);
+  if (value == 'popularity') displayMedias(sortOrder.favorite, true);
+
+}
+
 
 ///////////////////////////////////////////////////////////////////////
+
 
 //  fonction affichage prix photographe sur photographe.html
 async function displayPhotographerPrice(currentPhotographer) {
@@ -96,7 +117,8 @@ async function displayPhotographerPrice(currentPhotographer) {
 
 
 ///////////////////////////////////////////////////////////////////////
-
+//      LIKES
+//////////////////////////////////////////////////////////////////////
 async function getAllLikes() {
 
   const { media } = await getAllDatas();
@@ -112,8 +134,8 @@ async function getAllLikes() {
 
 
 async function sumOfLikes() {
-
   let allLikes = await getAllLikes();
+
   let sumOfLikes = 0;
 
   for (let like of allLikes) {
@@ -125,20 +147,30 @@ async function sumOfLikes() {
 
 
 async function displayTotalLikes() {
-
   let likesMedia = await sumOfLikes();
-
   const $photographerPrice = document.getElementById('photographer-likes-price');
 
   const totalLikes = `
-    <p class="photographer-likes">${likesMedia}
+    <p class="photographer-likes"><span>${likesMedia}</span>
       <i class="fas fa-heart"></i>
     </p>
   `
-
    totalLikes.innerHTML = likesMedia;
-
   return $photographerPrice.insertAdjacentHTML('afterbegin', totalLikes);
+}
+
+
+function addLikes(target) {
+  let nbLikes = parseInt(target.previousElementSibling.innerText);
+  nbLikes = nbLikes+1;
+  target.previousElementSibling.innerText = nbLikes;
+
+  let totalLikes = parseInt(document.querySelector('.photographer-likes span').innerText);
+  totalLikes = totalLikes+1;
+
+  document.querySelector('.photographer-likes span').innerText = totalLikes;
+
+  target.removeAttribute('onclick')
 
 }
 
@@ -152,91 +184,10 @@ async function init() {
 
   displayPhotographerHeader(photographerToDisplay);
   displayPhotographerName(photographerToDisplay);  //pour le contact form
-  displayMedias();
+  displayMedias(sortOrder.favorite, true);
   displayPhotographerPrice(photographerToDisplay)
   displayTotalLikes();
  };
 
 
 init();
-
-
-
-
-//code Lightbox?
-
-/*
-async function showModal() {
-
-  let modalContent = document.querySelector('#lightbox__container');
-
-  let container = document.querySelector('#lightbox__container .lightbox');
-
-  modalContent.classList.add("active")
-  console.log('Cliqué !')
-
-  //Chargement des images dans la boite modal
-  const { media } = await getAllDatas();
-
-  const mediasToDisplay = media.filter(media => media.photographerId === id_paramNumb);
-
-  const nbImg = mediasToDisplay.length
-
-  container.style.width = (500 * nbImg) + "px";
-  //console.log(nbImg)
-
-    for (let i = 0; i < nbImg; i++) {
-      if (mediasToDisplay[i].image) {
-        div = document.createElement("div");
-        div.className = "photo";
-        div.style.backgroundImage = "url('assets/images/" + mediasToDisplay[i].photographerId + "/" + mediasToDisplay[i].image + "')"
-      }
-      else {
-        div = document.createElement("div");
-        div.className = "photo";
-        div.style.backgroundImage = "url('assets/images/" + mediasToDisplay[i].photographerId + "/" + mediasToDisplay[i].video + "')"
-      }
-      container.appendChild(div)
-      //modalContent.appendChild(container)
-
-    }
-    console.log(modalContent)
-    let p = 0;
-    let btnGauche = document.querySelector('.lightbox-prev')
-    let btnDroit = document.querySelector('.lightbox-next')
-
-    afficherMasquer();
-
-    btnGauche.onclick = function(){
-      if (p > -nbImg+1)
-        p--;
-      container.style.transform = "translate("+p*500+"px)";
-      container.style.transition = "all 0.5s ease";
-      afficherMasquer();
-    }
-    btnDroit.onclick = function(){
-      if (p < 0)
-        p++;
-      container.style.transform = "translate("+p*500+"px)";
-      container.style.transition = "all 0.5s ease";
-      afficherMasquer();
-    }
-
-  function afficherMasquer(){
-    if (p == (-nbImg + 1))
-      btnGauche.style.visibility = "hidden";
-    else
-      btnGauche.style.visibility = "visible";
-    if (p == 0)
-      btnDroit.style.visibility = "hidden";
-    else
-      btnDroit.style.visibility = "visible";
-  }
-}
-
-
-function closeModalLightbox() {
-  let modalContent = document.querySelector('#lightbox__container');
-  modalContent.classList.remove("active")
-  console.log('Fermé !')
-}*/
