@@ -86,6 +86,6 @@ function photographerFactory(data) {
   // return $header
   //   }
 
-    return { createPhotographerCardDOM, createPhotographerPriceDOM }
+    return { name, createPhotographerCardDOM, createPhotographerPriceDOM }
 };
 //createPhotographerPriceDOM

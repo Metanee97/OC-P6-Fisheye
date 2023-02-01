@@ -190,6 +190,7 @@ a:focus, input:focus, button:focus, select:focus {
 .media-item__img:hover,
 .media-item__video:hover {
   transform: scale(1.1);
+  cursor: pointer;
 }
 
 .media-item__footer {
@@ -202,7 +203,7 @@ a:focus, input:focus, button:focus, select:focus {
   display: flex;
 }
 
-#nbLikes {
+.nbLikes {
   padding: 0;
   margin: 0;
   text-align: center;

@@ -27,7 +27,7 @@
         <div class="dropdownSortMedias">
 
           <label for="sortMedias">Trier par</label>
-          <select name="sortMedias" id="sortMedias">
+          <select name="sortMedias" id="sortMedias" onchange="changeSort(this.value)">
             <option value="popularity">Popularité</option>
             <option value="date">Date</option>
             <option value="title">Titre</option>

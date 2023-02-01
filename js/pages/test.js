@@ -172,3 +172,82 @@
 // console.log(Fruit.prototype);
 // console.log(pomme);
 // //console.log(testDeFonction);
+
+
+//code Lightbox?
+
+/*
+async function showModal() {
+
+  let modalContent = document.querySelector('#lightbox__container');
+
+  let container = document.querySelector('#lightbox__container .lightbox');
+
+  modalContent.classList.add("active")
+  console.log('Cliqué !')
+
+  //Chargement des images dans la boite modal
+  const { media } = await getAllDatas();
+
+  const mediasToDisplay = media.filter(media => media.photographerId === id_paramNumb);
+
+  const nbImg = mediasToDisplay.length
+
+  container.style.width = (500 * nbImg) + "px";
+  //console.log(nbImg)
+
+    for (let i = 0; i < nbImg; i++) {
+      if (mediasToDisplay[i].image) {
+        div = document.createElement("div");
+        div.className = "photo";
+        div.style.backgroundImage = "url('assets/images/" + mediasToDisplay[i].photographerId + "/" + mediasToDisplay[i].image + "')"
+      }
+      else {
+        div = document.createElement("div");
+        div.className = "photo";
+        div.style.backgroundImage = "url('assets/images/" + mediasToDisplay[i].photographerId + "/" + mediasToDisplay[i].video + "')"
+      }
+      container.appendChild(div)
+      //modalContent.appendChild(container)
+
+    }
+    console.log(modalContent)
+    let p = 0;
+    let btnGauche = document.querySelector('.lightbox-prev')
+    let btnDroit = document.querySelector('.lightbox-next')
+
+    afficherMasquer();
+
+    btnGauche.onclick = function(){
+      if (p > -nbImg+1)
+        p--;
+      container.style.transform = "translate("+p*500+"px)";
+      container.style.transition = "all 0.5s ease";
+      afficherMasquer();
+    }
+    btnDroit.onclick = function(){
+      if (p < 0)
+        p++;
+      container.style.transform = "translate("+p*500+"px)";
+      container.style.transition = "all 0.5s ease";
+      afficherMasquer();
+    }
+
+  function afficherMasquer(){
+    if (p == (-nbImg + 1))
+      btnGauche.style.visibility = "hidden";
+    else
+      btnGauche.style.visibility = "visible";
+    if (p == 0)
+      btnDroit.style.visibility = "hidden";
+    else
+      btnDroit.style.visibility = "visible";
+  }
+}
+
+
+function closeModalLightbox() {
+  let modalContent = document.querySelector('#lightbox__container');
+  modalContent.classList.remove("active")
+  console.log('Fermé !')
+}*/
