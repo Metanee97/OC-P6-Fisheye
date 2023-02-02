@@ -209,11 +209,16 @@ a:focus, input:focus, button:focus, select:focus {
   text-align: center;
 }
 
-.likes-icon {
+.likes-clicked {
   font-size: 1.2rem;
   color: #901C1C;
 }
 
+/* .likes-icon {
+  font-weight: normal;
+  font-size: 1.2rem;
+  color: #901C1C;
+} */
 
 
 

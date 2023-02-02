@@ -164,6 +164,7 @@ function addLikes(target) {
   let nbLikes = parseInt(target.previousElementSibling.innerText);
   nbLikes = nbLikes+1;
   target.previousElementSibling.innerText = nbLikes;
+  target.classList.add('likes-clicked')
 
   let totalLikes = parseInt(document.querySelector('.photographer-likes span').innerText);
   totalLikes = totalLikes+1;
