@@ -2,14 +2,19 @@
 const $wrapper = document.getElementById('main-wrapper');
 const $contactModal = document.getElementById('contact_modal');
 const $modal = document.getElementById("contact_modal");
+const $closeModal = document.querySelector('.modal__close-btn');
+console.log($closeModal);
 
 function displayModal() {
 
 	$modal.style.display = "block";
+  $contactModal.focus();
 
   $wrapper.setAttribute("aria-hidden", "true");
   $contactModal.setAttribute("aria-hidden", "false");
   $modal.setAttribute("aria-modal", "true");
+
+
 
 }
 
