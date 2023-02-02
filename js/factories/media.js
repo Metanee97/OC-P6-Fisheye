@@ -18,7 +18,7 @@ function templateImage(media) {
 
     return `
     <article class="media-item"  >
-      <a class="media-item__link" id="${media.id}" data-href="/assets/images/${media.photographerId}/${media.image}" onclick="Lightbox.openLightbox(this)">
+      <a class="media-item__link" id="${media.id}" data-type="image" data-href="/assets/images/${media.photographerId}/${media.image}" onclick="Lightbox.openLightbox(this)">
         <img class="media-item__img" src="/assets/images/${media.photographerId}/${media.image}">
       </a>
       <div class="media-item__footer">
@@ -42,7 +42,7 @@ function templateVideo(media) {
   function createHTMLCard() {
     return `
     <article class="media-item" >
-      <a class="media-item__link" id="${media.id}" data-href="/assets/images/${media.photographerId}/${media.video}" onclick="Lightbox.openLightbox(this)" onclick="openLightbox()">
+      <a class="media-item__link" id="${media.id}" data-type="video" data-href="/assets/images/${media.photographerId}/${media.video}" onclick="Lightbox.openLightbox(this)" onclick="openLightbox()">
         <video class="media-item__video" preload="auto" autoplay controls>
         <source src="/assets/images/${media.photographerId}/${media.video}" type="video/mp4">
         </video>

@@ -4,26 +4,30 @@ class Lightbox {
 
   static openLightbox(target) {
     const media = target.dataset.href;  //récupère chemin img
+    const mediaType = target.dataset.type;  //récupère chemin img
+
     console.log(target);
     // const id = target.id;
     // console.log(typeof media);
-      new Lightbox(media); //crée une lightbox avec chemin img
+      new Lightbox(media, mediaType); //crée une lightbox avec chemin img
   }
 
-  constructor(media) {
+  constructor(media, type) {
     this.element = this.buildDom(media)
-    this.loadMedia(media)
+    if(type === 'image') {
+      this.loadMedia(media)
+    } else {
+      this.loadMediaVideo(media)
+    }
     this.onKeyUp = this.onKeyUp.bind(this);
     document.body.appendChild(this.element);
     // disableBodyScroll(this.element)
     document.body.appendChild(this.element);
     document.addEventListener('keyup', this.onKeyUp);
-
   }
 
   loadMedia(media) {
     const image = new Image();
-    console.log(typeof image);
     const lightboxContainer = this.element.querySelector('.lightbox__container');
     lightboxContainer.appendChild(image)
     image.src = media;
@@ -31,16 +35,16 @@ class Lightbox {
 
   // fonction pour afficher vidéo
 
-  // loadMedia(media) {
-  //   const video = document.createElement('video');
-  //   video.setAttribute('preload', 'auto')
-  //   video.setAttribute('autoplay', '')
-  //   video.setAttribute('controls', '')
+  loadMediaVideo(media) {
+    const video = document.createElement('video');
+    video.setAttribute('preload', 'auto')
+    video.setAttribute('autoplay', '')
+    video.setAttribute('controls', '')
 
-  //   const lightboxContainer = this.element.querySelector('.lightbox__container');
-  //   lightboxContainer.appendChild(video)
-  //   video.src = media;
-  // }
+    const lightboxContainer = this.element.querySelector('.lightbox__container');
+    lightboxContainer.appendChild(video)
+    video.src = media;
+  }
 
   onKeyUp (e) {
     if (e.key === 'Escape'){
