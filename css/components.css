@@ -10,7 +10,7 @@
     overflow: auto;
 }
 
-.contact_button {
+.contact_button, .contact-form-validation__button {
     font-size: 20px;
     /* font-weight: bold; */
     color: white;
@@ -100,10 +100,48 @@ button {
   border-radius: 5px;
   /* padding: 8px; */
   /* margin-top: 0.5em; */
-  font-size: 20px;
+  font-size: 17px;
 }
 
-#msg {
+
+.formData[data-error]::after {
+  content: attr(data-error);
+  font-size: 0.9em;
+  color: #b50113;
+  display: block;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  text-align: right;
+  line-height: 0.3;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.formData[data-error-visible="true"]::after {
+  opacity: 1;
+}
+
+.formData[data-error-visible="true"] .contact_input{
+  border: 2px solid #e54858;
+}
+
+.formData[data-error-visible="true"] #contact_msg {
+  border: 2px solid #e54858;
+}
+.error {
+  width: 100%;
+  padding: 0;
+  font-size: 80%;
+  color: white;
+  background-color: #900;
+  border-radius: 0 0 5px 5px;
+}
+
+.error.active {
+  padding: 0.3em;
+}
+
+#contact_msg {
   margin: 0;
   border: none;
   border-radius: 5px;
@@ -138,6 +176,8 @@ button {
 
 
 /* LIGHTBOX */
+
+
 /* ::-webkit-scrollbar {
   width: 7px;
 }
@@ -171,7 +211,7 @@ button {
   animation: lightboxIn .5s;
   /* overflow: auto; */
   transition: opacity .3s;
-  margin: 3em;
+  /* margin: 3em; */
 }
 
 .lightbox.fadeOut {
@@ -181,8 +221,6 @@ button {
 .lightbox__next,
 .lightbox__prev {
   background: url(../assets/icons/arrow.svg) center center / 100% 100%;
-  width: 35px;
-  height: 35px;
   top: 50%;
   right: 0;
   /* margin-top: -14px; */
@@ -223,20 +261,30 @@ button {
   justify-content: center;
   margin-left: 50px;
   margin-right: 50px;
-  min-height: 100vh;
+  /* min-height: 50vh; */
 }
 
 .lightbox__container img, video {
   width: 80%;
   max-width: 100%;
-  height: 800px;
+  height: 600px;
   object-fit: cover;
-  border-radius: 0.6rem;
+  border-radius: 0.2rem;
   animation: lightboxIn .5s;
 
   /* max-height: auto */
-  /* margin-top: 50px;*/
+  /* margin-top: 50px; */
   /* margin-bottom: 50px; */
+}
+
+.media__title {
+  font-size: 1rem;
+  margin: 0;
+  margin-left: 50px;
+  margin-right: 50px;
+  /* display: flex;
+  align-items: center; */
+  color: black;
 }
 
 @keyframes lightboxIn {
