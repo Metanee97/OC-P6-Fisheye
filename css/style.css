@@ -1,9 +1,5 @@
 @import url("components.css");
 
-body {
-  font-family: "DM Sans", sans-serif;
-  margin: 0;
-}
 
 a:focus {
   color: #901C1C;
@@ -33,12 +29,12 @@ header {
   }
 }
 
-a:hover, input:hover, button:hover, select:hover,
+a:hover, button:hover, select:hover,
 a:focus, input:focus, button:focus, select:focus {
   font-weight: bold;
 }
 
-/* Photographers */
+/* INDEX.HTML - PHOTOGRAPHERS */
 
 .photographer_section {
   display: grid;
@@ -180,10 +176,11 @@ a:focus, input:focus, button:focus, select:focus {
 
 .media-item__img,
 .media-item__video {
-  height: 280px;
+  height: 310px;
   width: 100%;
   object-fit: cover;
   position: relative;
+  border-radius: 0.2rem;
   transition: transform 0.3s ease-in-out;
 }
 
