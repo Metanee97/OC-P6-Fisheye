@@ -1,27 +1,39 @@
-#contact_modal {
-    display: none;
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #5252527a;
-    z-index: 1;
-    overflow: auto;
+button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
 }
 
-.contact_button, .contact-form-validation__button {
-    font-size: 20px;
-    /* font-weight: bold; */
-    color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    /* border: none; */
-    background-color: #901C1C;
-    border-radius: 5px;
-    /* cursor: pointer; */
-    margin-top: 0.7em;
+/* MODAL */
+#contact_modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #5252527a;
+  z-index: 1;
+  overflow: auto;
+}
+
+#form-title {
+  margin-bottom: 1.2em;
+}
+
+.contact_button,
+.contact-form-validation__button {
+  font-size: 20px;
+  /* font-weight: bold; */
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  /* border: none; */
+  background-color: #901C1C;
+  border-radius: 5px;
+  /* cursor: pointer; */
+  margin-top: 0.7em;
 }
 
 .contact_button:hover {
@@ -37,14 +49,6 @@
   }
 }
 
-button {
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-}
-
-/* MODAL */
-
 .modal {
   position: relative;
   border-radius: 5px;
@@ -55,7 +59,7 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5em 1.3em 1.3em;
+  padding: 2.5em 1.3em 1.3em;
   margin: 5% auto;
   overflow: hidden;
 }
@@ -100,6 +104,7 @@ button {
   border-radius: 5px;
   /* padding: 8px; */
   /* margin-top: 0.5em; */
+  margin-top: 0.5em;
   font-size: 17px;
 }
 
@@ -143,6 +148,7 @@ button {
 
 #contact_msg {
   margin: 0;
+  margin-top: 0.5em;
   border: none;
   border-radius: 5px;
 }
@@ -201,19 +207,45 @@ button {
 } */
 
 .lightbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgb(255, 255, 255);
-  z-index: 10;
+  z-index: 50;
   animation: lightboxIn .5s;
-  /* overflow: auto; */
-  transition: opacity .3s;
-  /* margin: 3em; */
+  overflow: auto;
+  /* transition: opacity .3s; */
 }
 
+.lightbox__container {
+
+  margin-left: 50px;
+  margin-right: 50px;
+  /* width: 90%; */
+  /* min-height: 100vh; */
+  /* border: 2px solid black; */
+}
+
+.lightbox__container img,
+.lightbox__container video {
+  max-width: 100%;
+  /* display: block; */
+  width: 65vw;
+  height: 85vh;
+  /* max-width: 100%; */
+  /* height: auto; */
+  object-fit: cover;
+  object-position: 50% 40%;
+  border-radius: 0.2rem;
+  animation: lightboxIn .5s;
+  /* margin-top: auto; */
+}
 .lightbox.fadeOut {
   opacity: 0;
 }
@@ -221,28 +253,28 @@ button {
 .lightbox__next,
 .lightbox__prev {
   background: url(../assets/icons/arrow.svg) center center / 100% 100%;
-  top: 50%;
-  right: 0;
-  /* margin-top: -14px; */
+  top: 50vh;
+  right: 10vw;
+  margin-top: -14px;
 }
 
 .lightbox__prev {
   right: auto;
-  left: 0;
+  left: 10vw;
   transform: rotate(180deg);
 }
 
 .lightbox__close {
   background: url(../assets/icons/close-lightbox.svg) center center / 100% 100%;
-  top: -10px;
-  right: 20px;
+  top: 7vh;
+  right: 10vw;
 }
 
 .lightbox button {
   width: 35px;
   height: 35px;
   position: fixed;
-  margin: 3em;
+  /* margin: 3em; */
   border: none;
   cursor: pointer;
   transition: 3s;
@@ -251,40 +283,18 @@ button {
   transition: opacity .3s;
 }
 
-/* .lightbox button:hover {
-  opacity: 1;
-} */
 
-.lightbox__container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 50px;
-  margin-right: 50px;
-  /* min-height: 50vh; */
-}
-
-.lightbox__container img, video {
-  width: 80%;
-  max-width: 100%;
-  height: 600px;
-  object-fit: cover;
-  border-radius: 0.2rem;
-  animation: lightboxIn .5s;
-
-  /* max-height: auto */
-  /* margin-top: 50px; */
-  /* margin-bottom: 50px; */
-}
 
 .media__title {
   font-size: 1rem;
-  margin: 0;
-  margin-left: 50px;
-  margin-right: 50px;
+  align-self: stretch;
+  /* margin: 0; */
+  margin-left: 18vw;
+  /* margin-right: 50px; */
   /* display: flex;
   align-items: center; */
-  color: black;
+  color: #901C1C;
+  /* text-align: center; */
 }
 
 @keyframes lightboxIn {
