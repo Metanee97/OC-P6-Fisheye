@@ -164,7 +164,7 @@ function addLikes(target) {
   let nbLikes = parseInt(target.previousElementSibling.innerText);
   nbLikes = nbLikes+1;
   target.previousElementSibling.innerText = nbLikes;
-  target.classList.add('likes-clicked')
+  // target.classList.add('likes-clicked')
 
   let totalLikes = parseInt(document.querySelector('.photographer-likes span').innerText);
   totalLikes = totalLikes+1;
@@ -175,8 +175,42 @@ function addLikes(target) {
 
 }
 
+///////////////////////////////////////////////////////////////////////
+// Focus
+
+// function trapFocus(element) {
 
 
+// const focusableElements = element.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])');
+
+// console.log(focusableElements);
+
+
+// const firstFocusableElement = focusableElements[0];
+// const lastFocusableElement = focusableElements[focusableElements.length - 1];
+// const KEYCODE_TAB = 9;
+
+// }
+
+// console.log(firstFocusableElement, lastFocusableElement );
+
+
+
+// element.addEventListener('keydown', function(e) {
+//   if (e.key === 'Tab' || e.keyCode === KEYCODE_TAB) {
+//     if ( e.shiftKey ) /* shift + tab */ {
+//       if (document.activeElement === firstFocusableElement) {
+//         lastFocusableElement.focus();
+//         e.preventDefault();
+//       }
+//     } else /* tab */ {
+//       if (document.activeElement === lastFocusableElement) {
+//         firstFocusableElement.focus();
+//         e.preventDefault();
+//       }
+//     }
+//   }
+// });
 ///////////////////////////////////////////////////////////////////////
 
 async function init() {
