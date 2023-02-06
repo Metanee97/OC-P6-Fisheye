@@ -4,8 +4,32 @@ button {
   background-color: transparent;
 }
 
-/* MODAL */
-#contact_modal {
+.contact-button {
+  margin-right: 8em;
+  width: 16%;
+  height: 70px;
+  background-color: #901C1C;
+  color: white;
+  border-radius: 5px;
+  font-size: 1.3rem;
+}
+
+.contact-button:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 900px) {
+  .contact-button {
+    font-size: 15px;
+    width: 120px;
+    height: 50px;
+    padding: 7px;
+  }
+}
+
+/* CONTACT FORM MODAL */
+#contact-modal {
   display: none;
   position: fixed;
   left: 0;
@@ -15,38 +39,6 @@ button {
   background-color: #5252527a;
   z-index: 1;
   overflow: auto;
-}
-
-#form-title {
-  margin-bottom: 1.2em;
-}
-
-.contact_button,
-.contact-form-validation__button {
-  font-size: 20px;
-  /* font-weight: bold; */
-  color: white;
-  padding: 11px;
-  width: 170px;
-  height: 70px;
-  /* border: none; */
-  background-color: #901C1C;
-  border-radius: 5px;
-  /* cursor: pointer; */
-  margin-top: 0.7em;
-}
-
-.contact_button:hover {
-  transform: scale(1.1);
-}
-
-@media screen and (max-width: 900px) {
-  .contact_button {
-    font-size: 15px;
-    width: 120px;
-    height: 50px;
-    padding: 7px;
-  }
 }
 
 .modal {
@@ -64,50 +56,52 @@ button {
   overflow: hidden;
 }
 
-.modal header {
+.contact-form__header {
   justify-content: space-between;
   width: 100%;
+}
+
+#form__title {
+  margin-bottom: 1.2em;
+  font-size: 3rem;
 }
 
 .modal header img {
   cursor: pointer;
 }
 
-.modal header h2 {
+/* .modal header h2 {
   font-size: 44px;
   font-weight: normal;
   text-align: center;
   margin-top: 0;
-}
+} */
 
-#contact_form {
+
+#contact-form {
   width: 100%;
 }
 
-#contact_form label {
+#contact-form label {
   font-size: 23px;
   color: #312E2E;
 }
 
- /* #contact_form div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: self-start;
-     margin-bottom: 26px;
-} */
-
-.contact_input {
+.contact-input {
   width: 100%;
   height: 48px;
   border: none;
   border-radius: 5px;
-  /* padding: 8px; */
-  /* margin-top: 0.5em; */
   margin-top: 0.5em;
   font-size: 17px;
 }
 
+#contact-msg {
+  margin: 0;
+  margin-top: 0.5em;
+  border: none;
+  border-radius: 5px;
+}
 
 .formData[data-error]::after {
   content: attr(data-error);
@@ -126,13 +120,14 @@ button {
   opacity: 1;
 }
 
-.formData[data-error-visible="true"] .contact_input{
+.formData[data-error-visible="true"] .contact-input{
   border: 2px solid #e54858;
 }
 
-.formData[data-error-visible="true"] #contact_msg {
+.formData[data-error-visible="true"] #contact-msg {
   border: 2px solid #e54858;
 }
+
 .error {
   width: 100%;
   padding: 0;
@@ -146,14 +141,16 @@ button {
   padding: 0.3em;
 }
 
-#contact_msg {
-  margin: 0;
-  margin-top: 0.5em;
-  border: none;
+.contact-form__validation-button {
+  font-size: 20px;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  background-color: #901C1C;
   border-radius: 5px;
+  margin-top: 0.7em;
 }
-
-
 
 /* DROPDOWN */
 

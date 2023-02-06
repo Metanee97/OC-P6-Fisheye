@@ -23,20 +23,30 @@
       <!-- Photograph Header - Main informations -->
       <main id="main">
         <section class="photographer-header" role="heading">
-          <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+          <button class="contact-button" onclick="displayModal()">Contactez-moi</button>
         </section>
 
-        <div class="dropdownSortMedias">
-
+        <!-- <div class="custom-select">
           <label for="sortMedias">Trier par</label>
           <select name="sortMedias" id="sortMedias" onchange="changeSort(this.value)">
             <option value="popularity">Popularité</option>
             <option value="date">Date</option>
             <option value="title">Titre</option>
           </select>
+        </div> -->
+              <!--  -->
+        <div id="filter">
+          <button class="choice">Popularité</button>
+
+          <div class="option__container">
+            <button class="optionSpan selected">Popularité
+
+            </button>
+            <button class="optionSpan second">Date</button>
+            <button class="optionSpan">Titre</button>
+          </div>
         </div>
-
-
+        <!--  -->
         <!-- Media section -->
         <section class="photographer-media"></section>
 
@@ -47,48 +57,51 @@
 
       <!-- Contact Form -->
       <div
-        id="contact_modal"
+        id="contact-modal"
         role="dialog"
         aria-modal="false"
         aria-label="contact-form"
         aria-hidden=”true”
         aria-labelledby="form-title"
-
         >
         <div class="modal">
-          <header class="contact_modal_header">
-            <h1 id="form-title">Contactez-moi</h1>
-            <button class="modal__close-btn" aria-label="close Contact Form">
+          <header class="contact-form__header">
+            <h1 id="form__title">Contactez-moi</h1>
+            <button class="modal__close-btn" aria-label="close Contact Form"
+            onclick="closeModal()">
               <img
               src="assets/icons/close.svg"
               alt="icône croix pour fermer la modale de contact"
-              onclick="closeModal()"
+
               />
             </button>
           </header>
 
           <form
-            id="contact_form"
+            id="contact-form"
             name="contact"
             action="photographer.html"
             method="get"
             onsubmit="return validate();"
           >
-            <div role="group" aria-labelledby="contact informations">
+            <!-- <div role="group" aria-labelledby="contact informations"> -->
               <div class="formData" data-error="Veuillez entrer 2 caractères ou plus." data-error-visible="false">
                 <label for="first-name">Prénom *</label>
                 <input
-                  class="contact_input"
+                  class="contact-input"
                   type="text"
                   id="first-name"
-                  name="user_first-name">
+                  name="user_first-name"
+                  required="required"
+                  >
+
 
               </div>
 
               <div class="formData" data-error="Veuillez entrer 2 caractères ou plus." data-error-visible="false">
                 <label for="last-name">Nom *</label>
                 <input
-                  class="contact_input"
+                  class="contact-input"
                   type="text"
                   id="last-name"
                   name="user_last-name"
@@ -98,25 +111,25 @@
               <div class="formData" data-error="Veuillez entrer une adresse mail valide." data-error-visible="false">
                 <label for="email">Email *</label>
                 <input
-                  class="contact_input"
+                  class="contact-input"
                   type="email"
                   id="email"
                   name="user_email"
                   >
               </div>
-            </div>
+            <!-- </div> -->
             <div class="formData" data-error="Veuillez renseigner votre besoin." data-error-visible="false">
               <label for="msg">Votre message *</label>
               <textarea
-                name="user_message"
-                id="contact_msg"
-                cols="60"
-                rows="10">
-              </textarea>
+                name="user-message"
+                id="contact-msg"
+                cols="59"
+                rows="10"></textarea>
+
             </div>
 
             <button
-            class="contact-form-validation__button"
+            class="contact-form__validation-button"
             aria-label="send"
             >Envoyer</button>
           </form>
