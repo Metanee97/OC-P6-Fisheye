@@ -8,132 +8,79 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
-
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <!-- Header page - Logo - Homepage button -->
+
     <div id="main-wrapper" aria-hidden=”false”>
+      <!-- HEADER -->
       <header>
         <a href="index.html" aria-label="link to homepage">
           <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
         </a>
       </header>
 
-      <!-- Photograph Header - Main informations -->
       <main id="main">
+        <!-- PHOTOGRAPH HEADER - MAIN INFOS -->
         <section class="photographer-header" role="heading">
           <button class="contact-button" onclick="displayModal()">Contactez-moi</button>
         </section>
-
-        <!-- <div class="custom-select">
-          <label for="sortMedias">Trier par</label>
-          <select name="sortMedias" id="sortMedias" onchange="changeSort(this.value)">
-            <option value="popularity">Popularité</option>
-            <option value="date">Date</option>
-            <option value="title">Titre</option>
-          </select>
-        </div> -->
-              <!--  -->
+        <!-- SORT MEDIAS -->
         <div id="filter">
           <button class="choice">Popularité</button>
-
           <div class="option__container">
-            <button class="optionSpan selected">Popularité
-
-            </button>
+            <button class="optionSpan selected">Popularité</button>
             <button class="optionSpan second">Date</button>
             <button class="optionSpan">Titre</button>
           </div>
         </div>
-        <!--  -->
-        <!-- Media section -->
+        <!-- MEDIAS SECTION -->
         <section class="photographer-media"></section>
-
+        <!-- LIKES + PRICE -->
+        <aside id="photographer-likes-price" role="complementary"></aside>
       </main>
+    </div>
 
-      <!-- Aside : likes + price/day -->
-      <aside id="photographer-likes-price" role="complementary"></aside>
+    <!-- CONTACT FORM -->
+    <div
+    id="contact-modal"
+    role="dialog"
+    aria-modal="false"
+    aria-label="contact-form"
+    aria-hidden=”true”
+    aria-labelledby="form-title"
+    >
+      <div class="modal">
+        <header class="contact-form__header">
+          <h1 id="form__title">Contactez-moi</h1>
+          <button class="modal__close-btn" aria-label="close Contact Form" onclick="closeModal()">
+            <img src="assets/icons/close.svg" alt="icône croix pour fermer la modale de contact"/>
+          </button>
+        </header>
 
-      <!-- Contact Form -->
-      <div
-        id="contact-modal"
-        role="dialog"
-        aria-modal="false"
-        aria-label="contact-form"
-        aria-hidden=”true”
-        aria-labelledby="form-title"
-        >
-        <div class="modal">
-          <header class="contact-form__header">
-            <h1 id="form__title">Contactez-moi</h1>
-            <button class="modal__close-btn" aria-label="close Contact Form"
-            onclick="closeModal()">
-              <img
-              src="assets/icons/close.svg"
-              alt="icône croix pour fermer la modale de contact"
-
-              />
-            </button>
-          </header>
-
-          <form
-            id="contact-form"
-            name="contact"
-            action="photographer.html"
-            method="get"
-            onsubmit="return validate();"
-          >
-            <!-- <div role="group" aria-labelledby="contact informations"> -->
-              <div class="formData" data-error="Veuillez entrer 2 caractères ou plus." data-error-visible="false">
-                <label for="first-name">Prénom *</label>
-                <input
-                  class="contact-input"
-                  type="text"
-                  id="first-name"
-                  name="user_first-name"
-                  required="required"
-                  >
-
-
-              </div>
-
-              <div class="formData" data-error="Veuillez entrer 2 caractères ou plus." data-error-visible="false">
-                <label for="last-name">Nom *</label>
-                <input
-                  class="contact-input"
-                  type="text"
-                  id="last-name"
-                  name="user_last-name"
-                  >
-              </div>
-
-              <div class="formData" data-error="Veuillez entrer une adresse mail valide." data-error-visible="false">
-                <label for="email">Email *</label>
-                <input
-                  class="contact-input"
-                  type="email"
-                  id="email"
-                  name="user_email"
-                  >
-              </div>
-            <!-- </div> -->
-            <div class="formData" data-error="Veuillez renseigner votre besoin." data-error-visible="false">
-              <label for="msg">Votre message *</label>
-              <textarea
-                name="user-message"
-                id="contact-msg"
-                cols="59"
-                rows="10"></textarea>
-
+        <form id="contact-form" name="contact" action="photographer.html" method="get" onsubmit="return validate();">
+          <div role="group" aria-labelledby="contact informations">
+            <div class="formData" data-error="Veuillez entrer 2 caractères ou plus." data-error-visible="false">
+              <label for="first-name">Prénom *</label>
+              <input class="contact-input" type="text" id="first-name" name="user_first-name" required="required">
             </div>
 
-            <button
-            class="contact-form__validation-button"
-            aria-label="send"
-            >Envoyer</button>
-          </form>
-        </div>
+            <div class="formData" data-error="Veuillez entrer 2 caractères ou plus." data-error-visible="false">
+              <label for="last-name">Nom *</label>
+              <input class="contact-input" type="text" id="last-name" name="user_last-name">
+            </div>
+
+            <div class="formData" data-error="Veuillez entrer une adresse mail valide." data-error-visible="false">
+              <label for="email">Email *</label>
+              <input class="contact-input" type="email" id="email" name="user_email">
+            </div>
+          </div>
+          <div class="formData" data-error="Veuillez renseigner votre besoin." data-error-visible="false">
+            <label for="msg">Votre message *</label>
+            <textarea name="user-message" id="contact-msg" cols="59" rows="10"></textarea>
+          </div>
+          <button class="contact-form__validation-button" aria-label="send">Envoyer</button>
+        </form>
       </div>
     </div>
     <!-- Script JS -->
