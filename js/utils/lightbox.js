@@ -1,40 +1,43 @@
 // import { enableBodyScroll, disableBodyScroll } from "./body-scroll-lock";
 const $mainWrapper = document.getElementById('main-wrapper');
 
+
 class Lightbox {
 
-  static current = null;
+  static currentMedia = null;
 
   static openLightbox(target) {
     const media = target.dataset.href;  //récupère chemin img
-    const mediaType = target.dataset.type;  //récupère chemin img
-    this.current = target;
+    const mediaType = target.dataset.type;  //récupère type du média
+    this.currentMedia = target;  // média cliqué
     // const id = target.id;
-      new Lightbox(media, mediaType); //crée une lightbox avec chemin img
+    new Lightbox(media, mediaType); //crée une lightbox avec chemin img et type média
+    document.querySelector('.lightbox__close').focus();
   }
 
   constructor(media, type) {
     this.element = this.buildDom(media)
     this.load(media, type);
     this.onKeyUp = this.onKeyUp.bind(this);
-    document.body.appendChild(this.element);
+    // document.body.appendChild(this.element);
     // disableBodyScroll(this.element)
-    document.body.appendChild(this.element);
+    $mainWrapper.insertAdjacentElement('afterend', this.element)
+    // document.body.appendChild(this.element);
     document.addEventListener('keyup', this.onKeyUp);
   }
 
   load(media, type) {
     if(type === 'image') {
-      this.loadMedia(media)
+      this.loadMediaImg(media)
     } else {
       this.loadMediaVideo(media)
     }
     const lightboxTitle = this.element.querySelector('.media__title');
-    lightboxTitle.innerText = Lightbox.current.parentElement.querySelector('.title-media').innerText;
+    lightboxTitle.innerText = Lightbox.currentMedia.parentElement.querySelector('.title-media').innerText;
 
   }
 
-  loadMedia(media) {
+  loadMediaImg(media) {
     const image = new Image();
     const lightboxContainer = this.element.querySelector('.lightbox__container');
     lightboxContainer.innerHTML = "";
@@ -56,20 +59,6 @@ class Lightbox {
     video.src = media;
   }
 
-  /**
-   *
-   * @param {KeyboardEvent} e
-   */
-  onKeyUp (e) {
-    if (e.key === 'Escape'){
-    this.close(e)
-    } else if (e.key === 'ArrowLeft'){
-    this.prev(e)
-    } else if (e.key === 'ArrowRight'){
-    this.next(e)
-    }
-  }
-
   close(e) {
     e.preventDefault()
     this.element.classList.add('fadeOut');
@@ -83,29 +72,29 @@ class Lightbox {
 
   next (e) {
     e.preventDefault()
-    let next = Lightbox.current.closest('.media-item');
+    let next = Lightbox.currentMedia.closest('.media-item');
 
     next = next.nextElementSibling; //article suivant si non nul
 
     if(next == null) {
-      next = Lightbox.current.closest('.photographer-media').firstElementChild;
+      next = Lightbox.currentMedia.closest('.photographer-media').firstElementChild;
     }
     next = next.querySelector('.media-item__link');
-    Lightbox.current = next;
+    Lightbox.currentMedia = next;
     this.load(next.dataset.href, next.dataset.type);
   }
 
   prev (e) {
     e.preventDefault()
-    let prev = Lightbox.current.closest('.media-item');
+    let prev = Lightbox.currentMedia.closest('.media-item');
 
     prev = prev.previousElementSibling; //article précédent si non nul
 
     if(prev == null) {
-      prev = Lightbox.current.closest('.photographer-media').lastElementChild;
+      prev = Lightbox.currentMedia.closest('.photographer-media').lastElementChild;
     }
     prev = prev.querySelector('.media-item__link');
-    Lightbox.current = prev;
+    Lightbox.currentMedia = prev;
     this.load(prev.dataset.href, prev.dataset.type);
   }
 
@@ -123,7 +112,6 @@ class Lightbox {
       <button class="lightbox__prev">Prev</button>
       <div class="lightbox__container"></div>
       <p class="media__title"></p>
-
     `
     lightbox.querySelector('.lightbox__close').addEventListener('click', this.close.bind(this));
 
@@ -131,9 +119,37 @@ class Lightbox {
 
     lightbox.querySelector('.lightbox__prev').addEventListener('click', this.prev.bind(this))
 
-
     return lightbox
   }
+
+  /**
+   *
+   * @param {KeyboardEvent} e
+   */
+  onKeyUp (e) {
+    const $buttonsFocused = Lightbox.querySelectorAll('button');
+    console.log($buttonsFocused);
+    if (e.key === 'Escape'){
+    this.close(e)
+    } else if (e.key === 'ArrowLeft'){
+    this.prev(e)
+    } else if (e.key === 'ArrowRight'){
+    this.next(e)
+    }
+    // else if (e.key === 'Tab') {
+    //   this.focusInLightbox(e)
+    // }
+  }
+
+  // focusInLightbox(e) {
+  //   e.preventDefault();
+  //   $buttonsFocused = Lightbox.querySelectorAll('button');
+  //   console.log($buttonsFocused);
+
+  // }
+
 }
+
+
 
 // Lightbox.openLightbox();
