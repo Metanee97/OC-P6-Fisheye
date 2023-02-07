@@ -1,7 +1,6 @@
 // import { enableBodyScroll, disableBodyScroll } from "./body-scroll-lock";
 const $mainWrapper = document.getElementById('main-wrapper');
 
-
 class Lightbox {
 
   static currentMedia = null;
@@ -12,18 +11,23 @@ class Lightbox {
     this.currentMedia = target;  // média cliqué
     // const id = target.id;
     new Lightbox(media, mediaType); //crée une lightbox avec chemin img et type média
-    document.querySelector('.lightbox__close').focus();
+    // document.querySelector('.lightbox__close').focus();
+
+
   }
 
   constructor(media, type) {
     this.element = this.buildDom(media)
     this.load(media, type);
-    this.onKeyUp = this.onKeyUp.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
+    // this.focus = this.focus(this);
     // document.body.appendChild(this.element);
     // disableBodyScroll(this.element)
     $mainWrapper.insertAdjacentElement('afterend', this.element)
     // document.body.appendChild(this.element);
-    document.addEventListener('keyup', this.onKeyUp);
+    document.addEventListener('keydown', this.onKeyDown);
+    this.focusablesElmts = Array.from(document.querySelectorAll('.lightbox-focus'));
+    // console.log(this.focusablesElmts[0].focus());;
   }
 
   load(media, type) {
@@ -34,7 +38,6 @@ class Lightbox {
     }
     const lightboxTitle = this.element.querySelector('.media__title');
     lightboxTitle.innerText = Lightbox.currentMedia.parentElement.querySelector('.title-media').innerText;
-
   }
 
   loadMediaImg(media) {
@@ -52,7 +55,6 @@ class Lightbox {
     video.setAttribute('preload', 'auto')
     video.setAttribute('autoplay', '')
     video.setAttribute('controls', '')
-
     const lightboxContainer = this.element.querySelector('.lightbox__container');
     lightboxContainer.innerHTML = "";
     lightboxContainer.appendChild(video)
@@ -66,7 +68,8 @@ class Lightbox {
     window.setTimeout(() => {
       this.element.parentElement.removeChild(this.element);
     }, 500)
-    document.removeEventListener('keyup', this.onKeyUp)
+    document.removeEventListener('keydown', this.onKeyDown)
+    this.element.setAttribute('aria-hidden', 'false')
     $mainWrapper.setAttribute('aria-hidden', 'false')
   };
 
@@ -100,16 +103,18 @@ class Lightbox {
 
   // retourne HTMLElement
   buildDom (media) {
-    const lightbox = document.createElement('div');
+    const lightbox = document.createElement('section');
     lightbox.classList.add('lightbox');
-    lightbox.setAttribute('aria-hidden', 'false')
+    lightbox.setAttribute('aria-hidden', 'false');
+    lightbox.setAttribute('aria-label', 'Image Closeup View');
     lightbox.setAttribute('role', 'dialog');
+    lightbox.setAttribute('aria-roledescription', 'carousel');
     $mainWrapper.setAttribute('aria-hidden', 'true')
 
     lightbox.innerHTML = `
-      <button class="lightbox__close">Fermer</button>
-      <button class="lightbox__next">Next</button>
-      <button class="lightbox__prev">Prev</button>
+      <button class="lightbox__close lightbox-focus" aria-label="Close Dialog"></button>
+      <button class="lightbox__next lightbox-focus" aria-label="Next Image"></button>
+      <button class="lightbox__prev lightbox-focus" aria-label="Previous Image"></button>
       <div class="lightbox__container"></div>
       <p class="media__title"></p>
     `
@@ -122,31 +127,38 @@ class Lightbox {
     return lightbox
   }
 
+ focusLightbox(e) {
+  e.preventDefault()
+  let index = this.focusablesElmts.findIndex(element => element === this.element.querySelector(':focus'));
+  if (e.shiftKey === true) {
+    index--
+  } else {
+    index++
+  }
+  if (index >= this.focusablesElmts.length) {
+    index = 0
+  }
+  if (index < 0) {
+    index = this.focusablesElmts.length - 1
+  }
+  this.focusablesElmts[index].focus();
+ }
+
   /**
    *
    * @param {KeyboardEvent} e
    */
-  onKeyUp (e) {
-    const $buttonsFocused = Lightbox.querySelectorAll('button');
-    console.log($buttonsFocused);
+  onKeyDown (e) {
     if (e.key === 'Escape'){
     this.close(e)
     } else if (e.key === 'ArrowLeft'){
     this.prev(e)
     } else if (e.key === 'ArrowRight'){
     this.next(e)
+    } else if (e.key === 'Tab') {
+    this.focusLightbox(e);
     }
-    // else if (e.key === 'Tab') {
-    //   this.focusInLightbox(e)
-    // }
   }
-
-  // focusInLightbox(e) {
-  //   e.preventDefault();
-  //   $buttonsFocused = Lightbox.querySelectorAll('button');
-  //   console.log($buttonsFocused);
-
-  // }
 
 }
 

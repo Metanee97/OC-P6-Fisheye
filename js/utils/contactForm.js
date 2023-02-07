@@ -1,6 +1,7 @@
 //DOM
+const $body = document.querySelector('#body');
 const $wrapper = document.getElementById('main-wrapper');
-const $contactModal = document.getElementById('contact-modal');
+const $contactModal = document.getElementById('modal');
 const $closeModal = document.querySelector('.modal__close-btn');
 const $validationFormBtn = document.querySelector(".contact-form__validation-button");
 const $form = document.querySelector('#contact-form');
@@ -12,6 +13,7 @@ function displayModal() {
   $wrapper.setAttribute("aria-hidden", "true");
   $contactModal.setAttribute("aria-hidden", "false");
   $contactModal.setAttribute("aria-modal", "true");
+  $body.classList.add('no-scroll');
 
   $form.querySelector('input').focus();
 
@@ -22,6 +24,7 @@ function closeModal() {
   $wrapper.setAttribute("aria-hidden", "false");
   $contactModal.setAttribute("aria-hidden", "true");
   $contactModal.setAttribute("aria-modal", "false");
+  $body.classList.remove('no-scroll')
 }
 
 /////////////////////////////////////////////////////
@@ -35,15 +38,17 @@ const $focusableElements = Array.from($contactModal.querySelectorAll('button, in
 // permet de naviguer avec shift+tab
 const focusInModal = function (e) {
   e.preventDefault()
-  let index = $focusableElements.findIndex(f => f === $contactModal.querySelector(':focus'));
+  let index = $focusableElements.findIndex(element => element === $contactModal.querySelector(':focus'));
   if (e.shiftKey === true) {
     index--
   } else {
     index++
   }
+  // si j'ai focus le dernier élemnt, je reviens sur le 1er
   if (index >= $focusableElements.length) {
     index = 0
   }
+  // si l'index est négatif, ca veut dire que j'étais sur le 1er élémnt alors je resélectionne le dernier élémnt du tableau
   if (index < 0) {
     index = $focusableElements.length - 1
   }
