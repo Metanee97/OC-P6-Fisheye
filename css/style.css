@@ -4,12 +4,29 @@
   box-shadow: 0 0 10px blue;
 } */
 
-/* a:focus {
-  color: #901C1C;
+/* a:focus,
+a:hover,
+button:focus,
+button:hover {
+  background-color: #D3573C;
+  color: black;
 } */
 
 *:focus {
-  border: 4px dotted rgb(175, 101, 220);
+  outline: none !important;
+  border: 5px dotted #901C1C;
+}
+
+textarea:focus {
+  border: 5px dotted #901C1C;
+}
+
+/* *:focus, textarea:focus {
+  border: 5px dotted rgb(175, 101, 220);
+} */
+
+a {
+  text-decoration: none;
 }
 
 main {
@@ -20,6 +37,7 @@ main {
 .no-scroll {
   overflow: hidden;
 }
+
 
 header {
   display: flex;
@@ -40,9 +58,20 @@ header {
 }
 
 @media screen and (max-width: 900px) {
-  .logo {
-    margin-left: 50px;
+
+  main {
+    margin-left: 2em;
+    margin-right: 2em;
   }
+
+  header {
+    justify-content: center;
+  }
+
+  .logo {
+    margin-left: 0;
+  }
+
 }
 
 /* a:hover, button:hover, select:hover,
@@ -147,18 +176,17 @@ a:focus, input:focus, button:focus, select:focus {
   .photographer-header-name {
     margin: 0;
   }
+
+  .photographer-header {
+    padding: 0;
+    margin-bottom: 5em
+  }
 }
 
 .photographer-header-location {
   color: #901C1C;
-  /* font-size: 1rem */
 }
 
-@media screen and (max-width: 900px) {
-  .photographer-header {
-    margin: 0;
-  }
-}
 
 
 
@@ -175,9 +203,10 @@ a:focus, input:focus, button:focus, select:focus {
 
 @media screen and (max-width: 900px) {
   .photographer-media {
-    margin: 2em;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
+    margin-top: 4em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 
@@ -222,8 +251,6 @@ a:focus, input:focus, button:focus, select:focus {
   text-align: center;
 }
 
-
-
 .likes-icon {
   font-weight: 400;
   font-size: 1.3rem;
@@ -232,47 +259,16 @@ a:focus, input:focus, button:focus, select:focus {
   font-weight: 900;
 }
 
-.fas {
-  font-weight: 900;
+.likes-icon:hover {
+  transform: scale(1.3);
+  transition: transform 0.3s ease-in-out;
+  /* background-color: #D3573C; */
+  /* color: black; */
 }
 
-.likes-clicked {
-  animation: bounce 1.3s linear;
-}
 
-@keyframes bounce {
-  0% {
-    transform: scale(1);
-  }
 
-  10% {
-    transform: scale(1.1);
-  }
 
-  20% {
-    transform: scale(0.9);
-  }
-
-  30% {
-    transform: scale(1.2);
-  }
-
-  40% {
-    transform: scale(0.9);
-  }
-
-  50% {
-    transform: scale(1.05);
-  }
-
-  60% {
-    transform: scale(0.95);
-  }
-
-  70% {
-    transform: scale(1);
-  }
-}
 
 /* PHOTOGRAPHER.HTML - BLOCK WITH LIKES & PRICE */
 

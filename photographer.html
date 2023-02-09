@@ -26,23 +26,32 @@
           <button class="contact-button" aria-label="Contact Me" onclick="displayModal()">Contactez-moi</button>
         </section>
         <!-- SORT MEDIAS -->
-        <div class="filter-part" aria-label="filter">
+        <div class="filter-part" >
           <label for="filter" id="filter-label">Trier par</label>
 
           <div id="filter"
-          role="listbox"
-          aria-labelledby="filter-label">
-            <button class="choice" id="sort-control" aria-controls="option-container" aria-expanded="false"
-            >
-              Popularité
-              <i class="fas fa-chevron-down sort-arrow"></i>
-            </button>
+            role="listbox"
+            aria-labelledby="filter-label"
+            aria-activedescendant="popularity"
 
-            <div class="option-container" id="option-container" role="group" aria-haspopup="Listbox"  aria-hidden="true" aria-labelledby="filter-label">
-              <a href="#" class="optionSpan second selected" id="popularity" role="option" value="popularity" aria-selected="true" onclick="changeSort(this)">
+            aria-expanded="false">
+
+            <div class="filter-trigger"  aria-controls="option-container"
+            aria-haspopup="Listbox"
+            >
+              <a href="#" class="choice" id="sort-control"
+              role="button" aria-label="filter">
+              Popularité
+              </a>
+              <i class="fas fa-chevron-down sort-arrow" aria-hidden="true"></i>
+            </div>
+
+            <div class="option-container" id="option-container" role="group"   aria-hidden="true" aria-labelledby="filter-label" >
+              <a href="#" class="optionSpan second selected" id="popularity" role="option" value="popularity" aria-selected="true" aria-label="popularity filter" onclick="changeSort(this)"
+              >
                 Popularité
               </a>
-              <a href="#" class="optionSpan second" id="date" role="option" value="date" aria-selected="false" onclick="changeSort(this)">
+              <a href="#" class="optionSpan second" id="date" role="option" value="date" aria-selected="false" aria-label="day filter"onclick="changeSort(this)">
                 Date
               </a>
               <a href="#" class="optionSpan second" id="title" role="option"value="title" aria-selected="false" onclick="changeSort(this)">
@@ -83,7 +92,7 @@
             data-error-visible="false"
             >
               <!-- <span id="error-first-name" role="alert">Veuillez entrer 2 caractères ou plus.</span> -->
-              <label for="first-name">Prénom <span>*</span></label>
+              <label for="first-name">Prénom <span aria-hidden='true'>*</span></label>
               <input class="contact-input" type="text" id="first-name" name="user_first-name" required="required" aria-invalid="false" aria-describedby="error-first-name">
             </div>
 
@@ -102,7 +111,7 @@
             <textarea
             name="user-message"
             id="contact-msg"
-            cols="59"
+            cols="60"
             rows="10"></textarea>
           </div>
           <button class="contact-form__validation-button" aria-label="send" required="required">Envoyer</button>

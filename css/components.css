@@ -14,9 +14,12 @@ button {
   font-size: 1.3rem;
 }
 
-.contact-button:hover {
+.contact-button:hover,
+.contact-button:focus {
   transform: scale(1.1);
   transition: transform 0.3s ease-in-out;
+  background-color: #D3573C;
+  color: black;
 }
 
 @media screen and (max-width: 900px) {
@@ -48,7 +51,7 @@ button {
   border-radius: 5px;
   background-color: #DB8876;
   width: 100%;
-  max-width: 500px;
+  max-width: 520px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -90,7 +93,7 @@ button {
 }
 
 .contact-input {
-  width: 100%;
+  width: 98%;
   height: 48px;
   border: none;
   border-radius: 5px;
@@ -102,7 +105,7 @@ button {
 #contact-msg {
   margin: 0;
   margin-top: 0.5em;
-  border: none;
+  /* border: none; */
   border-radius: 5px;
   padding: 0.4rem;
 }
@@ -156,6 +159,14 @@ button {
   margin-top: 0.7em;
 }
 
+.contact-form__validation-button:hover,
+.contact-form__validation-button:focus {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+  background-color: #D3573C;
+  color: black;
+}
+
 /* DROPDOWN */
 
 .filter-part {
@@ -166,29 +177,41 @@ button {
 }
 
 #filter {
-  width: 9%;
-  padding-left: 0.8rem;
-  /* margin-left: 1em; */
+  width: 13%;
   background-color: #901c1c;
   border-radius: 5px;
   position: absolute;
   left: 7%;
   top: -90%;
+  margin-left: 1em;
   z-index: 20;
+  padding-left: 1.3rem;
 }
 
-#filter button {
+.filter-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.choice {
   display: block;
   display: flex;
-  font-size: 1.3rem;
   color: white;
-  text-align: start;
-  padding: 1rem;
-  width: 100%;
+}
+
+.choice:hover,
+.choice:focus {
+  /* transform: scale(1.1); */
+  /* transition: transform 0.3s ease-in-out; */
+  background-color: #D3573C;
+  color: black;
 }
 
 .sort-arrow {
-  padding-left: 0.7rem;
+  color: white;
+  margin-right: 1.3em;
   font-size: 1.3rem;
 }
 
@@ -196,51 +219,41 @@ button {
   transform: rotate(180deg);
 }
 
-
-/* .filter-arrow-down {
-  display: block;
-  top: 38.3%;
-  position: absolute;
-  left: 130px;
-  width: 30px;
-  height: 25px;
-  background: url('/assets/icons/white-arrow.svg') center center / 100% 100%;
-}
-
-.filter-arrow-up {
-  position: absolute;
-  left: 12vw;
-  width: 30px;
-  height: 25px;
-  background: url('/assets/icons/white-arrow.svg') center center / 100% 100%;
-  transform: rotate(270deg);
-}  */
-
-.optionSpan {
+.optionSpan,
+.choice {
   font-size: 1.3rem;
-  padding: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   /* padding-block: 1rem; */
   color: white;
   display: block;
-  /* width: 100%; */
+  width: 100%;
   cursor: pointer;
   text-decoration: none;
 }
 
+/* .optionSpan {
+  padding-left: 0.1rem;
+} */
+
 .optionSpan:active,
 .optionSpan:focus,
 .optionSpan:hover {
-  color: white;
+  /* transform: scale(1.1); */
+  /* transition: transform 0.3s ease-in-out; */
+  background-color: #D3573C;
+  color: black;
+  /* color: white; */
 }
 
 .second:after {
   content: " ";
   position: absolute;
-  top: 54px;
-  left: 0px;
+  top: 45%;
+  left: -2%;
   height: 1.7px;
   /* width: 150px; */
-  width: 90%;
+  width: 95%;
   background-color: white;
   opacity: 0.5;
   z-index: 1;
@@ -249,11 +262,11 @@ button {
 .second:before {
   content: " ";
   position: absolute;
-  top: 2px;
-  left: 0px;
+  top: 2%;
+  left: -2%;
   height: 1.7px;
   /* width: 150px; */
-  width: 90%;
+  width: 95%;
   background-color: white;
   opacity: 0.5;
   z-index: 1;
@@ -264,10 +277,11 @@ button {
 }
 
 .option-container {
+  display: none;
   transition: transform 0.2s ease, opacity 0.2s ease, display 0s 0.5s;
   transform: translateY(-40px);
   opacity: 0;
-  display: none;
+  /* padding-left: 1.3rem; */
 }
 
 .selected {
@@ -280,30 +294,30 @@ button {
   display: block;
 }
 
+@media screen and (max-width: 900px) {
+
+  #filter {
+    width: 19%;
+  }
+
+  .filter-trigger {
+    font-size: 1rem;
+    height: 30px;
+    padding: 7px;
+  }
+
+  .optionSpan,
+  .choice {
+    font-size: 1rem;
+  }
+
+  .sort-arrow {
+    font-size: 1rem;
+  }
+}
+
 
 /* LIGHTBOX */
-
-/* ::-webkit-scrollbar {
-  width: 7px;
-}
-
-::-webkit-scrollbar-track {
-  background: #FFF;
-  padding: 1px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #9ca2b0;
-  border-radius: 4px;
-}
-
-.lightbox::-webkit-scrollbar-track {
-  background: black;
-}
-
-.lightbox::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, .3);
-} */
 
 .lightbox {
   display: flex;

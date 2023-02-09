@@ -67,36 +67,49 @@ async function displayPhotographerHeader(currentPhotographer) {
 
 // DOM
 const $select = document.querySelector("#filter");//grande div
-const $optionList = document.querySelectorAll(".option-container");//div qui contient les 3 choix
+const $optionList = document.querySelector(".option-container");//div qui contient les 3 choix
 const $options = document.querySelectorAll(".optionSpan");//les 3 choix
-const $choices = document.querySelectorAll(".choice"); //btn déclencheur
-const $choice = $choices[0];  //
+const $choice = document.querySelector(".choice"); //btn déclencheur
+// const $choice = $choices[0];
 const $sortBtn = document.getElementById('sort-control');
 const $sortArrow = document.querySelector('.sort-arrow');
-// const $wrapper = document.getElementById('main-wrapper');
+const $wrapperPage = document.getElementById('main-wrapper');
 
 
 // Functions to open the dropdown options
 function openSelect() {
-  $optionList[0].classList.toggle("option-container__open");
-  $sortArrow.classList.toggle('up');
-}
+  $optionList.classList.toggle("option-container__open");
+  let attribute = $choice.getAttribute('aria-expanded');
 
-function selectOption(element) {
-  if($optionList[0].classList.contains("option-container__open")){ //verifie si le select ouvert
-      $options.forEach(option => {
-          option.classList.remove("selected")
-      })
-      element.classList.add("selected")
-      $choice.innerHTML = element.innerHTML + changeIcon();
+  if ($optionList.classList.contains("option-container__open")) {
+    $select.setAttribute('aria-expanded', 'true')
+    $optionList.setAttribute('aria-hidden', 'false')
+    $wrapperPage.setAttribute('aria-hidden', 'true')
+    $sortArrow.classList.add('up');
+
+  } else {
+    $select.setAttribute('aria-expanded', 'false')
+    $optionList.setAttribute('aria-hidden', 'true')
+    $wrapperPage.setAttribute('aria-hidden', 'false')
+    $sortArrow.classList.remove('up');
+
   }
 }
 
-function changeIcon(){
-  return `<i class="fas fa-chevron-down sort-arrow"></i>`
+function selectOption(element) {
+  if($optionList.classList.contains("option-container__open")){
+    $options.forEach(option => {
+      option.classList.remove("selected")
+      option.setAttribute('aria-selected', 'false')
+    })
+    element.classList.add("selected")
+    element.setAttribute('aria-selected', 'true')
+    $choice.innerHTML = element.innerHTML
+    $select.setAttribute('aria-activedescendant', element.getAttribute('id'))
+  }
 }
 
-$select.addEventListener("click", openSelect)
+$select.addEventListener("click", openSelect);
 
 $options.forEach(option => {
     option.addEventListener("click", (e)=> {
@@ -110,24 +123,21 @@ $options.forEach(option => {
 
 // MANAGE THE FOCUS
 $select.addEventListener('keydown', function(e) {
-  if(e.key === 'Tab') {
+  if(e.key === 'Tab' && $optionList.getAttribute('aria-hidden') == 'false') {
     sortFocus(e)
   }
 })
 
 const sortFocus = function(e) {
-  // e.preventDefault()
-  const $focusableEl = Array.from($select.querySelectorAll('button, a'));
-  // console.log($focusableEl);
-    // console.log("OK");
-
+  e.preventDefault()
+  e.stopPropagation()
+  const $focusableEl = Array.from($select.querySelectorAll('a:not(.selected)'));
 
 
   let index = $focusableEl.findIndex(element => element === $select.querySelector(':focus'));
   if (e.shiftKey === true) {
     index--
   } else {
-    console.log(index);
     index++
   }
   if (index >= $focusableEl.length) {
@@ -138,8 +148,8 @@ const sortFocus = function(e) {
   }
   $focusableEl[index].focus();
 }
-// $focusableEl[0].focus();
-// console.log($focusableEl[0]);
+
+
 
 // object to set the filter
 const sortOrder = Object.freeze({
