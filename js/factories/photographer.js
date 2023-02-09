@@ -13,13 +13,14 @@ function photographerFactory(data) {
       const link = document.createElement('a');  //je crée un lien
       link.setAttribute("href", `photographer.html?id=${id}` );
       link.classList.add("photographer-card__link");  // j'ajoute la classe "photographerPage__link"
+      link.setAttribute("aria-label", `${name}`);
 
       const img = document.createElement('img'); //je crée l'avatar
       img.classList.add('photographer__avatar');
       img.setAttribute("src", picture);
       img.setAttribute("alt", ` `);
       img.setAttribute("role", "button");
-      img.setAttribute("aria-label", `Accéder à la page de ${name}`);
+
 
       const photographerName = document.createElement( 'h2' ); //je crée le nom/prénom
       photographerName.classList.add('photographer-name');
@@ -77,7 +78,7 @@ function photographerFactory(data) {
   //     <p class="photographer-location">${actualPhotographer.city}, ${actualPhotographer.country}</p>
   //     <p>${actualPhotographer.tagline}</p>
   //   </div>
-  //   <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+  //   <button class="contact__button" onclick="displayModal()">Contactez-moi</button>
   //   <div>
   //     <img class="photographer__avatar" src="/assets/photographers/${actualPhotographer.portrait}" alt="avatar du photographe ${actualPhotographer.name}">
   //   </div>

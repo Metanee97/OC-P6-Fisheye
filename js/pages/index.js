@@ -19,7 +19,6 @@ async function displayphotographers(photographers) {
         const photographerModel = photographerFactory(photographer);
         //console.log( photographerModel);
         const photographerCardDOM = photographerModel.createPhotographerCardDOM();
-        console.log(photographerCardDOM );
         $photographersSection.appendChild(photographerCardDOM);
     });
 };

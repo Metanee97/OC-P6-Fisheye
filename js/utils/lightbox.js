@@ -20,9 +20,7 @@ class Lightbox {
     this.element = this.buildDom(media)
     this.load(media, type);
     this.onKeyDown = this.onKeyDown.bind(this);
-    // this.focus = this.focus(this);
-    // document.body.appendChild(this.element);
-    // disableBodyScroll(this.element)
+
     $mainWrapper.insertAdjacentElement('afterend', this.element)
     // document.body.appendChild(this.element);
     document.addEventListener('keydown', this.onKeyDown);
