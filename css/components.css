@@ -28,8 +28,10 @@ button {
   }
 }
 
+
 /* CONTACT FORM MODAL */
-#contact-modal {
+
+#modal {
   display: none;
   position: fixed;
   left: 0;
@@ -37,11 +39,11 @@ button {
   height: 100%;
   width: 100%;
   background-color: #5252527a;
-  z-index: 1;
+  z-index: 21;
   overflow: auto;
 }
 
-.modal {
+.contact-modal {
   position: relative;
   border-radius: 5px;
   background-color: #DB8876;
@@ -66,11 +68,11 @@ button {
   font-size: 3rem;
 }
 
-.modal header img {
+.contact-modal header img {
   cursor: pointer;
 }
 
-/* .modal header h2 {
+/* .contact-modal header h2 {
   font-size: 44px;
   font-weight: normal;
   text-align: center;
@@ -94,6 +96,7 @@ button {
   border-radius: 5px;
   margin-top: 0.5em;
   font-size: 17px;
+  padding: 0.4rem;
 }
 
 #contact-msg {
@@ -101,6 +104,7 @@ button {
   margin-top: 0.5em;
   border: none;
   border-radius: 5px;
+  padding: 0.4rem;
 }
 
 .formData[data-error]::after {
@@ -154,32 +158,130 @@ button {
 
 /* DROPDOWN */
 
-
-.dropdownSortMedias {
+.filter-part {
   position: relative;
-  width: 200px;
-  margin: 0 100px;
-  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  margin: 2em auto;
 }
 
-#sortMedias {
-  /* appearance: none; */
-  outline: 0;
-  border: 0;
-  font-size: 0.9em;
-  background-color: #901C1C;
-  color: white;
-  padding: 0.7em;
+#filter {
+  width: 9%;
+  padding-left: 0.8rem;
+  /* margin-left: 1em; */
+  background-color: #901c1c;
   border-radius: 5px;
+  position: absolute;
+  left: 7%;
+  top: -90%;
+  z-index: 20;
 }
 
-.select-selected {
-  background-color: #901C1C;
+#filter button {
+  display: block;
+  display: flex;
+  font-size: 1.3rem;
+  color: white;
+  text-align: start;
+  padding: 1rem;
+  width: 100%;
+}
+
+.sort-arrow {
+  padding-left: 0.7rem;
+  font-size: 1.3rem;
+}
+
+.up {
+  transform: rotate(180deg);
+}
+
+
+/* .filter-arrow-down {
+  display: block;
+  top: 38.3%;
+  position: absolute;
+  left: 130px;
+  width: 30px;
+  height: 25px;
+  background: url('/assets/icons/white-arrow.svg') center center / 100% 100%;
+}
+
+.filter-arrow-up {
+  position: absolute;
+  left: 12vw;
+  width: 30px;
+  height: 25px;
+  background: url('/assets/icons/white-arrow.svg') center center / 100% 100%;
+  transform: rotate(270deg);
+}  */
+
+.optionSpan {
+  font-size: 1.3rem;
+  padding: 1rem;
+  /* padding-block: 1rem; */
+  color: white;
+  display: block;
+  /* width: 100%; */
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.optionSpan:active,
+.optionSpan:focus,
+.optionSpan:hover {
+  color: white;
+}
+
+.second:after {
+  content: " ";
+  position: absolute;
+  top: 54px;
+  left: 0px;
+  height: 1.7px;
+  /* width: 150px; */
+  width: 90%;
+  background-color: white;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.second:before {
+  content: " ";
+  position: absolute;
+  top: 2px;
+  left: 0px;
+  height: 1.7px;
+  /* width: 150px; */
+  width: 90%;
+  background-color: white;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.choice {
+  overflow: hidden;
+}
+
+.option-container {
+  transition: transform 0.2s ease, opacity 0.2s ease, display 0s 0.5s;
+  transform: translateY(-40px);
+  opacity: 0;
+  display: none;
+}
+
+.selected {
+  display: none;
+}
+
+.option-container__open {
+  transform: translateY(2px);
+  opacity: 1;
+  display: block;
 }
 
 
 /* LIGHTBOX */
-
 
 /* ::-webkit-scrollbar {
   width: 7px;

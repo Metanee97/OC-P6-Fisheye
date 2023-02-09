@@ -1,3 +1,8 @@
+//DOM
+// const $focusableElmnts = Array.from(document.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'));
+
+// let $modals = Array.from(document.querySelectorAll('.contact-modal'));
+
 
 ////////////////////////  PHOTOGRAPHER HEADER  ///////////////////////////////////////
 
@@ -41,9 +46,9 @@ async function displayPhotographerHeader(currentPhotographer) {
       <p class="photographer-location">${actualPhotographer.city}, ${actualPhotographer.country}</p>
       <p>${actualPhotographer.tagline}</p>
     </div>
-    <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+    <button class="contact-button" onclick="displayModal()">Contactez-moi</button>
     <div>
-      <img class="photographer__avatar" src="/assets/photographers/${actualPhotographer.portrait}" alt="avatar du photographe ${actualPhotographer.name}">
+      <img class="photographer__avatar" src="/assets/photographers/${actualPhotographer.portrait}" alt=" ">
     </div>
   `;
   $header.innerHTML = photographerHeaderInfos;
@@ -51,20 +56,102 @@ async function displayPhotographerHeader(currentPhotographer) {
 };
 
 
-////////////////////////  SECTION MEDIAS  ///////////////////////////////////////
+///////////////////////////////////////////////////////////////
+// SECTION MEDIAS
+///////////////////////////////////////////////////////////////
+
+
+////////////////////////
+// SORT BUTTON
+////////////////////////
 
 // DOM
-const $mediaSection = document.querySelector('.photographer-media');
+const $select = document.querySelector("#filter");//grande div
+const $optionList = document.querySelectorAll(".option-container");//div qui contient les 3 choix
+const $options = document.querySelectorAll(".optionSpan");//les 3 choix
+const $choices = document.querySelectorAll(".choice"); //btn déclencheur
+const $choice = $choices[0];  //
+const $sortBtn = document.getElementById('sort-control');
+const $sortArrow = document.querySelector('.sort-arrow');
+// const $wrapper = document.getElementById('main-wrapper');
 
+
+// Functions to open the dropdown options
+function openSelect() {
+  $optionList[0].classList.toggle("option-container__open");
+  $sortArrow.classList.toggle('up');
+}
+
+function selectOption(element) {
+  if($optionList[0].classList.contains("option-container__open")){ //verifie si le select ouvert
+      $options.forEach(option => {
+          option.classList.remove("selected")
+      })
+      element.classList.add("selected")
+      $choice.innerHTML = element.innerHTML + changeIcon();
+  }
+}
+
+function changeIcon(){
+  return `<i class="fas fa-chevron-down sort-arrow"></i>`
+}
+
+$select.addEventListener("click", openSelect)
+
+$options.forEach(option => {
+    option.addEventListener("click", (e)=> {
+        let element = e.target
+        selectOption(element)
+    })
+});
+
+
+
+
+// MANAGE THE FOCUS
+$select.addEventListener('keydown', function(e) {
+  if(e.key === 'Tab') {
+    sortFocus(e)
+  }
+})
+
+const sortFocus = function(e) {
+  // e.preventDefault()
+  const $focusableEl = Array.from($select.querySelectorAll('button, a'));
+  // console.log($focusableEl);
+    // console.log("OK");
+
+
+
+  let index = $focusableEl.findIndex(element => element === $select.querySelector(':focus'));
+  if (e.shiftKey === true) {
+    index--
+  } else {
+    console.log(index);
+    index++
+  }
+  if (index >= $focusableEl.length) {
+    index = 0
+  }
+  if (index < 0) {
+    index = $focusableEl.length - 1
+  }
+  $focusableEl[index].focus();
+}
+// $focusableEl[0].focus();
+// console.log($focusableEl[0]);
+
+// object to set the filter
 const sortOrder = Object.freeze({
   favorite: 'likes',
   title: 'title',
   date: 'date'
 });
 
-// Afficher les médias : img, nom, likes
+// Display medias : popularity sorting by default
 async function displayMedias(sortOrder, desc = false) {
 
+  const $mediaSection = document.querySelector('.photographer-media');
   const { media } = await getAllDatas(); // renvoie un array des médias tous photographes confondus
   const mediasToDisplay = media.filter(media => media.photographerId === id_paramNumb); //renvoie un array des médias du photographe en cours
 
@@ -90,14 +177,16 @@ async function displayMedias(sortOrder, desc = false) {
     $mediaSection.innerHTML = DOM;
 };
 
-function changeSort(value) {
-  if (value == 'title') displayMedias(sortOrder.title);
-  if (value == 'popularity') displayMedias(sortOrder.favorite, true);
-
+function changeSort(currentOption) {
+  // console.log("value", currentOption.getAttribute("value"));
+  const currentValueOption = currentOption.getAttribute("value");
+  if (currentValueOption == 'title') displayMedias(sortOrder.title);
+  if (currentValueOption == 'popularity') displayMedias(sortOrder.favorite, true);
 }
 
-
-///////////////////////////////////////////////////////////////////////
+////////////////////////
+//  PHOTOGRAPHER'S PRICE
+////////////////////////
 
 
 //  fonction affichage prix photographe sur photographe.html
@@ -113,17 +202,12 @@ async function displayPhotographerPrice(currentPhotographer) {
   return $photographerPrice.appendChild(price);
 }
 
-
-
-
-///////////////////////////////////////////////////////////////////////
+////////////////////////
 //      LIKES
-//////////////////////////////////////////////////////////////////////
+////////////////////////
 async function getAllLikes() {
-
   const { media } = await getAllDatas();
   const mediasToDisplay = media.filter(media => media.photographerId === id_paramNumb);
-
   let likes = [];
 
   mediasToDisplay.forEach(element => {
@@ -132,10 +216,8 @@ async function getAllLikes() {
   return likes
 }
 
-
 async function sumOfLikes() {
   let allLikes = await getAllLikes();
-
   let sumOfLikes = 0;
 
   for (let like of allLikes) {
@@ -144,35 +226,29 @@ async function sumOfLikes() {
   return sumOfLikes;
 }
 
-
-
 async function displayTotalLikes() {
   let likesMedia = await sumOfLikes();
   const $photographerPrice = document.getElementById('photographer-likes-price');
-
   const totalLikes = `
     <p class="photographer-likes"><span>${likesMedia}</span>
-      <i class="fas fa-heart"></i>
+      <i class="fas fa-heart" aria-hidden="true"></i>
     </p>
   `
    totalLikes.innerHTML = likesMedia;
   return $photographerPrice.insertAdjacentHTML('afterbegin', totalLikes);
 }
 
-
 function addLikes(target) {
-  let nbLikes = parseInt(target.previousElementSibling.innerText);
-  nbLikes = nbLikes+1;
-  target.previousElementSibling.innerText = nbLikes;
-  // target.classList.add('likes-clicked')
+  let $nbLikes = parseInt(target.previousElementSibling.innerText);
+
+  $nbLikes = $nbLikes+1;
+  target.previousElementSibling.innerText = $nbLikes;
 
   let totalLikes = parseInt(document.querySelector('.photographer-likes span').innerText);
   totalLikes = totalLikes+1;
 
   document.querySelector('.photographer-likes span').innerText = totalLikes;
-
   target.removeAttribute('onclick')
-
 }
 
 ///////////////////////////////////////////////////////////////////////

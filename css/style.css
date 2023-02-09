@@ -1,8 +1,24 @@
 @import url("components.css");
 
+/* *:focus {
+  box-shadow: 0 0 10px blue;
+} */
 
-a:focus {
+/* a:focus {
   color: #901C1C;
+} */
+
+*:focus {
+  border: 4px dotted rgb(175, 101, 220);
+}
+
+main {
+  margin-left: 5em;
+  margin-right: 5em;
+}
+
+.no-scroll {
+  overflow: hidden;
 }
 
 header {
@@ -117,7 +133,7 @@ a:focus, input:focus, button:focus, select:focus {
   align-items: center;
   background-color: #FAFAFA;
   height: 300px;
-  margin: 0 100px;
+  margin-bottom: 3em;
   padding: 0 3em;
 }
 
@@ -135,7 +151,7 @@ a:focus, input:focus, button:focus, select:focus {
 
 .photographer-header-location {
   color: #901C1C;
-  font-size: 1rem;
+  /* font-size: 1rem */
 }
 
 @media screen and (max-width: 900px) {
@@ -153,7 +169,7 @@ a:focus, input:focus, button:focus, select:focus {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 80px;
-  margin: 6.5em;
+  margin-top: 4em;
   /* grid-auto-rows: 1fr 1fr; */
 }
 
@@ -206,18 +222,57 @@ a:focus, input:focus, button:focus, select:focus {
   text-align: center;
 }
 
-/* .likes-clicked {
-  font-size: 1.2rem;
-  color: #901C1C;
-} */
+
 
 .likes-icon {
-  font-weight: normal;
-  font-size: 1.2rem;
+  font-weight: 400;
+  font-size: 1.3rem;
   color: #901C1C;
+  animation: bounce 1.3s linear;
+  font-weight: 900;
 }
 
+.fas {
+  font-weight: 900;
+}
 
+.likes-clicked {
+  animation: bounce 1.3s linear;
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+
+  10% {
+    transform: scale(1.1);
+  }
+
+  20% {
+    transform: scale(0.9);
+  }
+
+  30% {
+    transform: scale(1.2);
+  }
+
+  40% {
+    transform: scale(0.9);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  60% {
+    transform: scale(0.95);
+  }
+
+  70% {
+    transform: scale(1);
+  }
+}
 
 /* PHOTOGRAPHER.HTML - BLOCK WITH LIKES & PRICE */
 
