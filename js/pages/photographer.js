@@ -1,12 +1,8 @@
-//DOM
-// const $focusableElmnts = Array.from(document.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])'));
+////////////////////////
+//PHOTOGRAPHER HEADER
+///////////////////////////////////////
 
-// let $modals = Array.from(document.querySelectorAll('.contact-modal'));
-
-
-////////////////////////  PHOTOGRAPHER HEADER  ///////////////////////////////////////
-
-// Récupérer toutes les données JSON
+// get all JSON datas
 async function getAllDatas() {
   return fetch('../data/photographers.json')
       .then(res => {
@@ -18,16 +14,16 @@ async function getAllDatas() {
 };
 
 
-//récupération de l'Id dans l'url du photographe cliqué
+// get the photograoher's id in the url
 const urlParams = new URLSearchParams(window.location.search);
-const id_param = urlParams.get('id');   //string 243
-const id_paramNumb = parseInt(id_param);   //number
+const id_param = urlParams.get('id');
+const id_paramNumb = parseInt(id_param);
 
 //DOM
 const $header = document.querySelector('.photographer-header');
 
 
-// trouve le photographe courant
+// find the current photographer
 async function getOnePhotographer() {
  const { photographers } = await getAllDatas();
 
@@ -36,7 +32,7 @@ async function getOnePhotographer() {
 };
 
 
-// afficher infos du photographe courant dans le photographer-header
+// display photographer's infos in photographer's header section
 async function displayPhotographerHeader(currentPhotographer) {
   const actualPhotographer = await currentPhotographer;
 
@@ -56,21 +52,20 @@ async function displayPhotographerHeader(currentPhotographer) {
 };
 
 
+
 ///////////////////////////////////////////////////////////////
 // SECTION MEDIAS
 ///////////////////////////////////////////////////////////////
 
-
 ////////////////////////
-// SORT BUTTON
+// FILTER DROPDOWN
 ////////////////////////
 
 // DOM
-const $select = document.querySelector("#filter");//grande div
-const $optionList = document.querySelector(".option-container");//div qui contient les 3 choix
-const $options = document.querySelectorAll(".optionSpan");//les 3 choix
-const $choice = document.querySelector(".choice"); //btn déclencheur
-// const $choice = $choices[0];
+const $select = document.querySelector("#filter");
+const $optionList = document.querySelector(".option-container");
+const $options = document.querySelectorAll(".optionSpan");
+const $choice = document.querySelector(".choice");
 const $sortBtn = document.getElementById('sort-control');
 const $sortArrow = document.querySelector('.sort-arrow');
 const $wrapperPage = document.getElementById('main-wrapper');
@@ -79,6 +74,7 @@ const $wrapperPage = document.getElementById('main-wrapper');
 // Functions to open the dropdown options
 function openSelect() {
   $optionList.classList.toggle("option-container__open");
+  $choice.focus();
   let attribute = $choice.getAttribute('aria-expanded');
 
   if ($optionList.classList.contains("option-container__open")) {
@@ -86,13 +82,11 @@ function openSelect() {
     $optionList.setAttribute('aria-hidden', 'false')
     $wrapperPage.setAttribute('aria-hidden', 'true')
     $sortArrow.classList.add('up');
-
   } else {
     $select.setAttribute('aria-expanded', 'false')
     $optionList.setAttribute('aria-hidden', 'true')
     $wrapperPage.setAttribute('aria-hidden', 'false')
     $sortArrow.classList.remove('up');
-
   }
 }
 
@@ -121,8 +115,9 @@ $options.forEach(option => {
 
 
 
-// MANAGE THE FOCUS
+// MANAGE THE FOCUS OF THE DROPDOWN FILTER
 $select.addEventListener('keydown', function(e) {
+  console.log($optionList.getAttribute('aria-hidden'));
   if(e.key === 'Tab' && $optionList.getAttribute('aria-hidden') == 'false') {
     sortFocus(e)
   }
@@ -132,7 +127,6 @@ const sortFocus = function(e) {
   e.preventDefault()
   e.stopPropagation()
   const $focusableEl = Array.from($select.querySelectorAll('a:not(.selected)'));
-
 
   let index = $focusableEl.findIndex(element => element === $select.querySelector(':focus'));
   if (e.shiftKey === true) {
@@ -151,7 +145,7 @@ const sortFocus = function(e) {
 
 
 
-// object to set the filter
+// SETTINGS OF THE FILTER
 const sortOrder = Object.freeze({
   favorite: 'likes',
   title: 'title',
@@ -162,8 +156,8 @@ const sortOrder = Object.freeze({
 async function displayMedias(sortOrder, desc = false) {
 
   const $mediaSection = document.querySelector('.photographer-media');
-  const { media } = await getAllDatas(); // renvoie un array des médias tous photographes confondus
-  const mediasToDisplay = media.filter(media => media.photographerId === id_paramNumb); //renvoie un array des médias du photographe en cours
+  const { media } = await getAllDatas();
+  const mediasToDisplay = media.filter(media => media.photographerId === id_paramNumb);
 
   mediasToDisplay.sort(function(a, b) {
     if (a[sortOrder] < b[sortOrder]) {
@@ -188,11 +182,11 @@ async function displayMedias(sortOrder, desc = false) {
 };
 
 function changeSort(currentOption) {
-  // console.log("value", currentOption.getAttribute("value"));
   const currentValueOption = currentOption.getAttribute("value");
   if (currentValueOption == 'title') displayMedias(sortOrder.title);
   if (currentValueOption == 'popularity') displayMedias(sortOrder.favorite, true);
 }
+
 
 ////////////////////////
 //  PHOTOGRAPHER'S PRICE
@@ -215,6 +209,7 @@ async function displayPhotographerPrice(currentPhotographer) {
 ////////////////////////
 //      LIKES
 ////////////////////////
+
 async function getAllLikes() {
   const { media } = await getAllDatas();
   const mediasToDisplay = media.filter(media => media.photographerId === id_paramNumb);
@@ -261,43 +256,7 @@ function addLikes(target) {
   target.removeAttribute('onclick')
 }
 
-///////////////////////////////////////////////////////////////////////
-// Focus
 
-// function trapFocus(element) {
-
-
-// const focusableElements = element.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input[type="text"]:not([disabled]), input[type="radio"]:not([disabled]), input[type="checkbox"]:not([disabled]), select:not([disabled])');
-
-// console.log(focusableElements);
-
-
-// const firstFocusableElement = focusableElements[0];
-// const lastFocusableElement = focusableElements[focusableElements.length - 1];
-// const KEYCODE_TAB = 9;
-
-// }
-
-// console.log(firstFocusableElement, lastFocusableElement );
-
-
-
-// element.addEventListener('keydown', function(e) {
-//   if (e.key === 'Tab' || e.keyCode === KEYCODE_TAB) {
-//     if ( e.shiftKey ) /* shift + tab */ {
-//       if (document.activeElement === firstFocusableElement) {
-//         lastFocusableElement.focus();
-//         e.preventDefault();
-//       }
-//     } else /* tab */ {
-//       if (document.activeElement === lastFocusableElement) {
-//         firstFocusableElement.focus();
-//         e.preventDefault();
-//       }
-//     }
-//   }
-// });
-///////////////////////////////////////////////////////////////////////
 
 async function init() {
 

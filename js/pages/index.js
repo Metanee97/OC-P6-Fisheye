@@ -1,5 +1,5 @@
 
-// fonction asynchrone pour récupérer toutes les données du fichier photographers.json
+// get all datas
  async function getPhotographers() {
   return fetch('../data/photographers.json')
       .then(res => {
@@ -11,7 +11,7 @@
       })
 }
 
-// fonction asynchrone pour afficher les données phtographes sur la page accueil index.html
+// display photographers in index.html
 async function displayphotographers(photographers) {
     const $photographersSection = document.querySelector(".photographer_section");
 
@@ -23,11 +23,8 @@ async function displayphotographers(photographers) {
     });
 };
 
-// fonction asynchrone pour exécuter les deux précédentes fonctions
 async function init() {
-    //récupère uniquement le tableau photographers de l'objet json dans variable photographers
     const { photographers } = await getPhotographers();
-    //console.log(photographers);
     displayphotographers(photographers);
 };
 

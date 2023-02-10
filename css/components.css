@@ -51,7 +51,7 @@ button {
   border-radius: 5px;
   background-color: #DB8876;
   width: 100%;
-  max-width: 520px;
+  max-width: 550px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,14 +75,6 @@ button {
   cursor: pointer;
 }
 
-/* .contact-modal header h2 {
-  font-size: 44px;
-  font-weight: normal;
-  text-align: center;
-  margin-top: 0;
-} */
-
-
 #contact-form {
   width: 100%;
 }
@@ -105,15 +97,14 @@ button {
 #contact-msg {
   margin: 0;
   margin-top: 0.5em;
-  /* border: none; */
   border-radius: 5px;
   padding: 0.4rem;
 }
 
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.9em;
-  color: #b50113;
+  font-size: 1.1em;
+  color: #71030e;
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
@@ -167,6 +158,8 @@ button {
   color: black;
 }
 
+
+
 /* DROPDOWN */
 
 .filter-part {
@@ -194,17 +187,15 @@ button {
   justify-content: space-between;
 }
 
-
 .choice {
   display: block;
   display: flex;
   color: white;
 }
 
-.choice:hover,
-.choice:focus {
-  /* transform: scale(1.1); */
-  /* transition: transform 0.3s ease-in-out; */
+.choice:focus,
+.optionSpan:focus
+ {
   background-color: #D3573C;
   color: black;
 }
@@ -232,19 +223,6 @@ button {
   text-decoration: none;
 }
 
-/* .optionSpan {
-  padding-left: 0.1rem;
-} */
-
-.optionSpan:active,
-.optionSpan:focus,
-.optionSpan:hover {
-  /* transform: scale(1.1); */
-  /* transition: transform 0.3s ease-in-out; */
-  background-color: #D3573C;
-  color: black;
-  /* color: white; */
-}
 
 .second:after {
   content: " ";
@@ -252,7 +230,6 @@ button {
   top: 45%;
   left: -2%;
   height: 1.7px;
-  /* width: 150px; */
   width: 95%;
   background-color: white;
   opacity: 0.5;
@@ -265,7 +242,6 @@ button {
   top: 2%;
   left: -2%;
   height: 1.7px;
-  /* width: 150px; */
   width: 95%;
   background-color: white;
   opacity: 0.5;
@@ -281,7 +257,6 @@ button {
   transition: transform 0.2s ease, opacity 0.2s ease, display 0s 0.5s;
   transform: translateY(-40px);
   opacity: 0;
-  /* padding-left: 1.3rem; */
 }
 
 .selected {
@@ -333,31 +308,23 @@ button {
   z-index: 50;
   animation: lightboxIn .5s;
   overflow: auto;
-  /* transition: opacity .3s; */
 }
 
 .lightbox__container {
 
   margin-left: 50px;
   margin-right: 50px;
-  /* width: 90%; */
-  /* min-height: 100vh; */
-  /* border: 2px solid black; */
 }
 
 .lightbox__container img,
 .lightbox__container video {
   max-width: 100%;
-  /* display: block; */
   width: 65vw;
   height: 85vh;
-  /* max-width: 100%; */
-  /* height: auto; */
   object-fit: cover;
   object-position: 50% 40%;
   border-radius: 0.2rem;
   animation: lightboxIn .5s;
-  /* margin-top: auto; */
 }
 .lightbox.fadeOut {
   opacity: 0;
@@ -387,8 +354,6 @@ button {
   width: 35px;
   height: 35px;
   position: fixed;
-  /* margin: 3em; */
-  border: none;
   cursor: pointer;
   transition: 3s;
   z-index: 20;
@@ -396,18 +361,11 @@ button {
   transition: opacity .3s;
 }
 
-
-
 .media__title {
   font-size: 1rem;
   align-self: stretch;
-  /* margin: 0; */
   margin-left: 18vw;
-  /* margin-right: 50px; */
-  /* display: flex;
-  align-items: center; */
   color: #901C1C;
-  /* text-align: center; */
 }
 
 @keyframes lightboxIn {

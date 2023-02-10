@@ -13,6 +13,7 @@
   <body id="body">
 
     <div id="main-wrapper" aria-hidden=”false”>
+
       <!-- HEADER -->
       <header>
         <a href="index.html" aria-label="link to homepage">
@@ -21,6 +22,7 @@
       </header>
 
       <main id="main">
+
         <!-- PHOTOGRAPH HEADER - MAIN INFOS -->
         <section class="photographer-header" role="heading">
           <button class="contact-button" aria-label="Contact Me" onclick="displayModal()">Contactez-moi</button>
@@ -54,14 +56,16 @@
               <a href="#" class="optionSpan second" id="date" role="option" value="date" aria-selected="false" aria-label="day filter"onclick="changeSort(this)">
                 Date
               </a>
-              <a href="#" class="optionSpan second" id="title" role="option"value="title" aria-selected="false" onclick="changeSort(this)">
+              <a href="#" class="optionSpan second" id="title" role="option"value="title" aria-selected="false" aria-label="title filter" onclick="changeSort(this)">
                 Titre
               </a>
             </div>
           </div>
         </div>
+
         <!-- MEDIAS SECTION -->
         <section class="photographer-media"></section>
+
         <!-- LIKES + PRICE -->
         <aside id="photographer-likes-price" role="complementary"></aside>
       </main>
@@ -91,9 +95,9 @@
             data-error="Veuillez entrer 2 caractères ou plus."
             data-error-visible="false"
             >
-              <!-- <span id="error-first-name" role="alert">Veuillez entrer 2 caractères ou plus.</span> -->
+
               <label for="first-name">Prénom <span aria-hidden='true'>*</span></label>
-              <input class="contact-input" type="text" id="first-name" name="user_first-name" required="required" aria-invalid="false" aria-describedby="error-first-name">
+              <input class="contact-input" type="text" id="first-name" name="user_first-name" required="required" aria-describedby="error-first-name">
             </div>
 
             <div class="formData" data-error="Veuillez entrer 2 caractères ou plus." data-error-visible="false">
@@ -111,13 +115,14 @@
             <textarea
             name="user-message"
             id="contact-msg"
-            cols="60"
+            cols="63"
             rows="10"></textarea>
           </div>
           <button class="contact-form__validation-button" aria-label="send" required="required">Envoyer</button>
         </form>
       </div>
     </div>
+
     <!-- Script JS -->
     <script src="/js/factories/media.js"></script>
     <script src="/js/factories/photographer.js"></script>

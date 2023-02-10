@@ -1,8 +1,6 @@
-//fonction media factory pour créer les médias
-
+//function factory for medias
 function mediaFactory(media) {
   const { image } = media;
-  //console.log({image});
 
   function sortMedias() {
     if (image) return templateImage(media);
@@ -18,8 +16,8 @@ function templateImage(media) {
 
     return `
     <article class="media-item"  >
-      <a class="media-item__link" id="${media.id}" data-type="image" data-href="/assets/images/${media.photographerId}/${media.image}" onclick="Lightbox.openLightbox(this)" aria-label="${media.title} Closeup View">
-        <img class="media-item__img" src="/assets/images/${media.photographerId}/${media.image}">
+      <a class="media-item__link" id="${media.id}" data-type="image" href="#" data-href="/assets/images/${media.photographerId}/${media.image}" onclick="Lightbox.openLightbox(this)" aria-label="${media.title} Closeup View">
+        <img class="media-item__img" src="/assets/images/${media.photographerId}/${media.image}" alt="${media.title}">
       </a>
       <div class="media-item__footer">
         <p class="title-media">${media.title}</p>

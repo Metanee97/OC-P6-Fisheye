@@ -16,7 +16,6 @@ function displayModal() {
   $body.classList.add('no-scroll');
 
   $form.querySelector('input').focus();
-
 }
 
 function closeModal() {
@@ -31,11 +30,11 @@ function closeModal() {
 // FOCUS + TAB
 /////////////////////////////////////////////////////
 
-// éléments focusables dans la modale:
+// Focusable elements of contact form
 const $focusableElements = Array.from($contactModal.querySelectorAll('button, input, textarea'));
 
-// piège le focus dans la modale
-// permet de naviguer avec shift+tab
+// focus trap
+// navigation with keys
 const focusInModal = function (e) {
   e.preventDefault()
   let index = $focusableElements.findIndex(element => element === $contactModal.querySelector(':focus'));
@@ -44,11 +43,9 @@ const focusInModal = function (e) {
   } else {
     index++
   }
-  // si j'ai focus le dernier élemnt, je reviens sur le 1er
   if (index >= $focusableElements.length) {
     index = 0
   }
-  // si l'index est négatif, ca veut dire que j'étais sur le 1er élémnt alors je resélectionne le dernier élémnt du tableau
   if (index < 0) {
     index = $focusableElements.length - 1
   }
@@ -70,7 +67,6 @@ document.addEventListener('invalid', (function(){
       validate();
     };
 })(), true);
-// init in the file pages/photographer.js
 function displayPhotographerName(photographerToDisplay) {
   const photographerName = photographerToDisplay.name;
   const $formTitle = document.querySelector('#form__title');
@@ -145,13 +141,7 @@ function validate() {
   return false;
 };
 
-// function toggleError(input, show) {
-//   if (input.getAttribute("data-error-visible") !== null) {
-//     input.setAttribute("data-error-visible", show);
-//   } else {
-//     input.parentElement.setAttribute("data-error-visible", show);
-//   }
-// }
+
 function toggleError(textarea, show) {
   if (textarea.getAttribute("data-error-visible") !== null) {
     textarea.setAttribute("data-error-visible", show);

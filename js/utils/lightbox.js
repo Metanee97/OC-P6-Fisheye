@@ -1,4 +1,3 @@
-// import { enableBodyScroll, disableBodyScroll } from "./body-scroll-lock";
 const $mainWrapper = document.getElementById('main-wrapper');
 
 class Lightbox {
@@ -6,14 +5,10 @@ class Lightbox {
   static currentMedia = null;
 
   static openLightbox(target) {
-    const media = target.dataset.href;  //récupère chemin img
-    const mediaType = target.dataset.type;  //récupère type du média
-    this.currentMedia = target;  // média cliqué
-    // const id = target.id;
-    new Lightbox(media, mediaType); //crée une lightbox avec chemin img et type média
-    // document.querySelector('.lightbox__close').focus();
-
-
+    const media = target.dataset.href;
+    const mediaType = target.dataset.type;
+    this.currentMedia = target;
+    new Lightbox(media, mediaType);
   }
 
   constructor(media, type) {
@@ -22,32 +17,33 @@ class Lightbox {
     this.onKeyDown = this.onKeyDown.bind(this);
 
     $mainWrapper.insertAdjacentElement('afterend', this.element)
-    // document.body.appendChild(this.element);
     document.addEventListener('keydown', this.onKeyDown);
     this.focusablesElmts = Array.from(document.querySelectorAll('.lightbox-focus'));
-    // console.log(this.focusablesElmts[0].focus());;
   }
 
+  // sort type of media to build
   load(media, type) {
+    const lightboxTitle = this.element.querySelector('.media__title');
+    const title = lightboxTitle.innerText = Lightbox.currentMedia.parentElement.querySelector('.title-media').innerText;
+
     if(type === 'image') {
-      this.loadMediaImg(media)
+      this.loadMediaImg(media, title)
     } else {
       this.loadMediaVideo(media)
     }
-    const lightboxTitle = this.element.querySelector('.media__title');
-    lightboxTitle.innerText = Lightbox.currentMedia.parentElement.querySelector('.title-media').innerText;
   }
 
-  loadMediaImg(media) {
+  // structure for images
+  loadMediaImg(media, title) {
     const image = new Image();
     const lightboxContainer = this.element.querySelector('.lightbox__container');
     lightboxContainer.innerHTML = "";
     lightboxContainer.appendChild(image);
     image.src = media;
+    image.setAttribute('alt', title)
   }
 
-  // fonction pour afficher vidéo
-
+  // structure for videos
   loadMediaVideo(media) {
     const video = document.createElement('video');
     video.setAttribute('preload', 'auto')
@@ -62,7 +58,6 @@ class Lightbox {
   close(e) {
     e.preventDefault()
     this.element.classList.add('fadeOut');
-    // enableBodyScroll(this.element)
     window.setTimeout(() => {
       this.element.parentElement.removeChild(this.element);
     }, 500)
@@ -75,7 +70,7 @@ class Lightbox {
     e.preventDefault()
     let next = Lightbox.currentMedia.closest('.media-item');
 
-    next = next.nextElementSibling; //article suivant si non nul
+    next = next.nextElementSibling;
 
     if(next == null) {
       next = Lightbox.currentMedia.closest('.photographer-media').firstElementChild;
@@ -99,7 +94,7 @@ class Lightbox {
     this.load(prev.dataset.href, prev.dataset.type);
   }
 
-  // retourne HTMLElement
+  // HTML structure of the lightbox
   buildDom (media) {
     const lightbox = document.createElement('section');
     lightbox.classList.add('lightbox');
@@ -126,20 +121,20 @@ class Lightbox {
   }
 
  focusLightbox(e) {
-  e.preventDefault()
-  let index = this.focusablesElmts.findIndex(element => element === this.element.querySelector(':focus'));
-  if (e.shiftKey === true) {
-    index--
-  } else {
-    index++
-  }
-  if (index >= this.focusablesElmts.length) {
-    index = 0
-  }
-  if (index < 0) {
-    index = this.focusablesElmts.length - 1
-  }
-  this.focusablesElmts[index].focus();
+    e.preventDefault()
+    let index = this.focusablesElmts.findIndex(element => element === this.element.querySelector(':focus'));
+    if (e.shiftKey === true) {
+      index--
+    } else {
+      index++
+    }
+    if (index >= this.focusablesElmts.length) {
+      index = 0
+    }
+    if (index < 0) {
+      index = this.focusablesElmts.length - 1
+    }
+    this.focusablesElmts[index].focus();
  }
 
   /**
@@ -159,7 +154,3 @@ class Lightbox {
   }
 
 }
-
-
-
-// Lightbox.openLightbox();
