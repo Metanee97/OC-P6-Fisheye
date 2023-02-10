@@ -17,7 +17,7 @@ function photographerFactory(data) {
       const img = document.createElement('img');
       img.classList.add('photographer__avatar');
       img.setAttribute("src", picture);
-      img.setAttribute("alt", ` `);
+      img.setAttribute("alt", "");
       img.setAttribute("role", "button");
 
 

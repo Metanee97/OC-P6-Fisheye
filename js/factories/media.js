@@ -23,7 +23,7 @@ function templateImage(media) {
         <p class="title-media">${media.title}</p>
         <div class="media-item__likes-section">
           <p class="nbLikes">${media.likes}</p>
-          <button id="btnLikes" onclick="addLikes(this)" aria-label="likes">
+          <button class="btnLikes" onclick="addLikes(this)" aria-label="likes">
             <i class="fas fa-heart likes-icon likes-clicked" aria-hidden="true"></i>
           </button>
         </div>
@@ -49,7 +49,7 @@ function templateVideo(media) {
         <p class="title-media" >${media.title}</p>
         <div class="media-item__likes-section">
           <p id="nbLikes">${media.likes}</p>
-          <button id="btnLikes" onclick="addLikes(this)" aria-label="likes">
+          <button class="btnLikes" onclick="addLikes(this)" aria-label="likes">
             <i class="fas fa-heart likes-icon" aria-hidden="true"></i>
           </button>
         </div>

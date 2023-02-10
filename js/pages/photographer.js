@@ -51,8 +51,6 @@ async function displayPhotographerHeader(currentPhotographer) {
   return $header
 };
 
-
-
 ///////////////////////////////////////////////////////////////
 // SECTION MEDIAS
 ///////////////////////////////////////////////////////////////
@@ -70,7 +68,6 @@ const $sortBtn = document.getElementById('sort-control');
 const $sortArrow = document.querySelector('.sort-arrow');
 const $wrapperPage = document.getElementById('main-wrapper');
 
-
 // Functions to open the dropdown options
 function openSelect() {
   $optionList.classList.toggle("option-container__open");
@@ -80,12 +77,12 @@ function openSelect() {
   if ($optionList.classList.contains("option-container__open")) {
     $select.setAttribute('aria-expanded', 'true')
     $optionList.setAttribute('aria-hidden', 'false')
-    $wrapperPage.setAttribute('aria-hidden', 'true')
+    $wrapperPage.setAttribute("aria-hidden", "true")
     $sortArrow.classList.add('up');
   } else {
     $select.setAttribute('aria-expanded', 'false')
     $optionList.setAttribute('aria-hidden', 'true')
-    $wrapperPage.setAttribute('aria-hidden', 'false')
+    $wrapperPage.setAttribute("aria-hidden", "false")
     $sortArrow.classList.remove('up');
   }
 }
