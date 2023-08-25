@@ -12,7 +12,8 @@ async function getPhotographers() {
 }
 
 // display photographers in index.html
-async function displayphotographers(photographers) {
+async function displayPhotographers(photographers) {
+  //  console.log( photographers );
   const $photographersSection = document.querySelector(".photographer_section");
   photographers.forEach((photographer) => {
     const photographerModel = photographerFactory(photographer);
@@ -24,7 +25,8 @@ async function displayphotographers(photographers) {
 
 async function init() {
   const { photographers } = await getPhotographers();
-  displayphotographers(photographers);
+  // console.log( photographers );
+  displayPhotographers(photographers);
 }
 
 init();
