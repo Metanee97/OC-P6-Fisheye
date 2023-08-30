@@ -44,7 +44,7 @@ async function displayPhotographerHeader(currentPhotographer) {
     </div>
     <button class="contact-button" onclick="displayModal()">Contactez-moi</button>
     <div>
-      <img class="photographer__avatar" src="/assets/photographers/${actualPhotographer.portrait}" alt=" ">
+      <img class="photographer__avatar" src="./assets/photographers/${actualPhotographer.portrait}" alt=" ">
     </div>
   `;
   $header.innerHTML = photographerHeaderInfos;

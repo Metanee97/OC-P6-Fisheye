@@ -17,7 +17,7 @@ function templateImage(media) {
     return `
     <article class="media-item"  >
       <a class="media-item__link" id="${media.id}" data-type="image" href="#" data-href="/assets/images/${media.photographerId}/${media.image}" onclick="Lightbox.openLightbox(this)" aria-label="${media.title} Closeup View">
-        <img class="media-item__img" src="/assets/images/${media.photographerId}/${media.image}" alt="${media.title}">
+        <img class="media-item__img" src="./assets/images/${media.photographerId}/${media.image}" alt="${media.title}">
       </a>
       <div class="media-item__footer">
         <p class="title-media">${media.title}</p>
