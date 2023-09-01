@@ -4,7 +4,7 @@
 
 // get all JSON datas
 async function getAllDatas() {
-  return fetch('../data/photographers.json')
+  return fetch('data/photographers.json')
       .then(res => {
           return res.json();
       })
