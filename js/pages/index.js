@@ -1,8 +1,22 @@
 
 // get all datas
+// async function getPhotographers() {
+//   return fetch('../data/photographers.json')
+//     .then(res => {
+//       return res.json();
+//     })
+//     .then(dataJSON => {
+//       //console.log({dataJSON})
+//       return dataJSON;
+//     });
+// }
+
 async function getPhotographers() {
-  return fetch('../data/photographers.json')
+  return fetch('data/photographers.json')
     .then(res => {
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
       return res.json();
     })
     .then(dataJSON => {
