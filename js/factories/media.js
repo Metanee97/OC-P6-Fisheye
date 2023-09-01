@@ -16,7 +16,7 @@ function templateImage(media) {
 
     return `
     <article class="media-item"  >
-      <a class="media-item__link" id="${media.id}" data-type="image" href="#" data-href="/assets/images/${media.photographerId}/${media.image}" onclick="Lightbox.openLightbox(this)" aria-label="${media.title} Closeup View">
+      <a class="media-item__link" id="${media.id}" data-type="image" href="#" data-href="./assets/images/${media.photographerId}/${media.image}" onclick="Lightbox.openLightbox(this)" aria-label="${media.title} Closeup View">
         <img class="media-item__img" src="./assets/images/${media.photographerId}/${media.image}" alt="${media.title}">
       </a>
       <div class="media-item__footer">
@@ -40,9 +40,9 @@ function templateVideo(media) {
   function createHTMLCard() {
     return `
     <article class="media-item" >
-      <a class="media-item__link" id="${media.id}" data-type="video" data-href="/assets/images/${media.photographerId}/${media.video}" onclick="Lightbox.openLightbox(this)" onclick="openLightbox()">
+      <a class="media-item__link" id="${media.id}" data-type="video" data-href="./assets/images/${media.photographerId}/${media.video}" onclick="Lightbox.openLightbox(this)" onclick="openLightbox()">
         <video class="media-item__video" preload="auto" controls width="250">
-        <source src="/assets/images/${media.photographerId}/${media.video}" type="video/mp4">
+        <source src="./assets/images/${media.photographerId}/${media.video}" type="video/mp4">
         </video>
       </a>
       <div class="media-item__footer">
